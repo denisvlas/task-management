@@ -1,13 +1,226 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+
+body{
+  background:  rgb(28, 28, 28);
+   
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+
+
+.App{
+  color:rgb(235, 235, 235);
+  font-size: 40px;
+  text-align: center;
+  width: 70%;
+
+  margin: 0 auto;
+  padding-top: 3%;
+  padding-bottom: 10%;
+}
+
+.App h1{
+  margin-bottom: 15px;
+}
+
+.add-task-section{
+  display: flex;
+  justify-content: center;
+  gap:50px;
+  width:calc(50% - 13px);
+  margin: 0 auto;
+  
+  
+  
+}
+input{
+  
+  border: none;
+  display: flex;
+  padding: 15px;
+  width:100%;
+  height: 40px;
+  font-size: 23px;
+  margin-bottom: 10px;
+
+}
+
+.add-task-btn, .apply-task-btn {
+  display: flex;
+  height: 40px;
+  font-size: 23px;
+  padding: 5px;
+  border: none;
+  
+  
+  
+}
+
+.todo-task-wrapper{ 
+  display: flex;
+  flex-direction: column;
+  padding: 10px 60px 10px 60px;
+  gap:10px;
+  width: 60%;
+  margin: 0 auto;
+  min-width: 400px;
+ 
+
+}
+
+
+
+.todo-item {
+  display: flex;
+  font-size: 30px;
+  color:black;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+
+
+  .todo-task {
+    display: inline-flex;
+    flex: 3;
+    word-wrap: break-word; 
+  }
+
+  .edit-form {
+    display: flex;
+  }
+
+  .edit-form div{
+    display: flex;
+  }
+
+  .edit-form input{
+    text-align: left;
+    
+  }
+  .edit-form input:hover{
+    border:1px solid grey;
+    
+  }
+  
+  .edit-form input:focus{
+    background: #f2ed5e;
+    
+  }
+  
+ 
+  
+
+.todo-btn{
+  
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  color:rgb(84, 83, 83);
+  gap:10px;
+  flex:1;
+  margin-left: 10px;
+  
+}
+
+.done{
+  background: rgb(196, 250, 177);
+  
+ 
+}
+
+ .done p{
+  text-decoration: line-through;
+}
+
+.not-done{
+  background: #fff;
+
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+
+
+
+
+.delete-btn,
+.completed-btn,
+.updtate-btn,
+.modify-btn{
+  transition: all 0.2s;
+}
+
+.delete-btn:hover,
+.completed-btn:hover,
+.updtate-btn:hover,
+.modify-btn:hover{
+  color:black;
+  scale: 1.2;
+  
+}
+
+
+.footer, .footer .clear-all{
+  display: flex;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.826);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 0 5px;
+ 
+}
+
+.clear-all{
+  display: flex;
+  height: 40px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  background-color: white;
+  
+  
+}
+
+.counter{
+  font-size: 20px;
+ 
+}
+
+
+.footer-btn{
+  display:flex;
+  gap:20px;  
+}
+
+.show-incomplete,
+.show-complete,
+.show-all-tasks{
+  display: flex;
+  width: 200px;
+  margin-top: 20px;
+  border: none;
+  font-size: 18px;
+  align-items: center;
+  padding: 5px;
+  
+}
+
+.delete-completed{
+  
+  width: 100%;
+  margin-top: 20px;
+  height: 40px;
+  border: none;
+  font-size: 18px;
 }
