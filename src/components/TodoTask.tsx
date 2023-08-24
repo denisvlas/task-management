@@ -1,6 +1,7 @@
 import React,{useState}from 'react'
 import {Todo} from '../models'
 import Footer from './Footer'
+import TodoForm from './TodoForm'
 
 interface Props{
     todo:Todo[]
@@ -57,6 +58,8 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
     }
   return (
     <div className='todo-task-wrapper'>
+              <TodoForm todo={todo} setTodo={setTodo}/>
+
         {
             todo.map((item)=>(
             <div className={`${item.status?'done':'not-done'} todo-item`} key={item.id}>

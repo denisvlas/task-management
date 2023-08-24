@@ -1,226 +1,202 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
-
-
-body{
-  background:  rgb(28, 28, 28);
-   
+@import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);body {
+  background: #1c1c1c
 }
 
-*{
-  margin: 0;
-  padding: 0;
+* {
   box-sizing: border-box;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: Montserrat Alternates,sans-serif;
+  margin: 0;
+  padding: 0
 }
 
-
-
-.App{
-  color:rgb(235, 235, 235);
+.App {
+  color: #ebebeb;
   font-size: 40px;
-  text-align: center;
-  width: 70%;
-
   margin: 0 auto;
-  padding-top: 3%;
   padding-bottom: 10%;
+  padding-top: 3%;
+  text-align: center;
+  width: 70%
 }
 
-.App h1{
-  margin-bottom: 15px;
+.App h1 {
+  margin-bottom: 15px
 }
 
-.add-task-section{
+.add-task-section {
   display: flex;
-  justify-content: center;
-  gap:50px;
-  width:calc(50% - 13px);
-  margin: 0 auto;
-  
-  
-  
+  gap: 50px;
+  justify-content: center
 }
-input{
-  
-  border: none;
-  display: flex;
-  padding: 15px;
-  width:100%;
-  height: 40px;
-  font-size: 23px;
+
+input {
   margin-bottom: 10px;
-
+  padding: 15px;
+  width: 100%
 }
 
-.add-task-btn, .apply-task-btn {
-  display: flex;
-  height: 40px;
-  font-size: 23px;
-  padding: 5px;
+.add-task-btn,.apply-task-btn,input {
   border: none;
-  
-  
-  
+  display: flex;
+  font-size: 23px;
+  height: 40px
 }
 
-.todo-task-wrapper{ 
+.add-task-btn,.apply-task-btn {
+  padding: 5px
+}
+
+.todo-task-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 10px 60px 10px 60px;
-  gap:10px;
-  width: 60%;
+  gap: 10px;
   margin: 0 auto;
   min-width: 400px;
- 
-
+  padding: 10px 60px;
+  width: 60%
 }
-
-
 
 .todo-item {
+  color: #000;
   display: flex;
-  font-size: 30px;
-  color:black;
-  padding: 10px;
   flex-wrap: wrap;
+  font-size: 30px;
+  padding: 10px
 }
 
+.todo-task {
+  word-wrap: break-word;
+  display: inline-flex;
+  flex: 3 1
+}
 
+.edit-form,.edit-form div {
+  display: flex
+}
 
-  .todo-task {
-    display: inline-flex;
-    flex: 3;
-    word-wrap: break-word; 
-  }
+.edit-form input {
+  text-align: left
+}
 
-  .edit-form {
-    display: flex;
-  }
+.edit-form input:hover {
+  border: 1px solid grey
+}
 
-  .edit-form div{
-    display: flex;
-  }
+.edit-form input:focus {
+  background: #f2ed5e
+}
 
-  .edit-form input{
-    text-align: left;
-    
-  }
-  .edit-form input:hover{
-    border:1px solid grey;
-    
-  }
-  
-  .edit-form input:focus{
-    background: #f2ed5e;
-    
-  }
-  
- 
-  
-
-.todo-btn{
-  
+.todo-btn {
+  color: #545353;
+  cursor: pointer;
   display: flex;
+  flex: 1 1;
+  gap: 10px;
   justify-content: flex-end;
-  cursor: pointer;
-  color:rgb(84, 83, 83);
-  gap:10px;
-  flex:1;
-  margin-left: 10px;
-  
+  margin-left: 10px
 }
 
-.done{
-  background: rgb(196, 250, 177);
-  
- 
+.done {
+  background: #c4fab1
 }
 
- .done p{
-  text-decoration: line-through;
+.done p {
+  text-decoration: line-through
 }
 
-.not-done{
-  background: #fff;
-
+.not-done {
+  background: #fff
 }
 
-button:hover{
-  cursor: pointer;
+button:hover {
+  cursor: pointer
 }
 
-
-
-
-
-.delete-btn,
-.completed-btn,
-.updtate-btn,
-.modify-btn{
-  transition: all 0.2s;
+.completed-btn,.delete-btn,.modify-btn,.updtate-btn {
+  transition: all .2s
 }
 
-.delete-btn:hover,
-.completed-btn:hover,
-.updtate-btn:hover,
-.modify-btn:hover{
-  color:black;
-  scale: 1.2;
-  
+.completed-btn:hover,.delete-btn:hover,.modify-btn:hover,.updtate-btn:hover {
+  color: #000;
+  scale: 1.2
 }
 
-
-.footer, .footer .clear-all{
-  display: flex;
+.footer,.footer .clear-all {
+  align-items: center;
   background-color: #fff;
-  color: rgba(0, 0, 0, 0.826);
+  color: rgba(0,0,0,.826);
+  display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 5px 0 5px;
- 
+  padding: 0 5px
 }
 
-.clear-all{
+.clear-all {
+  background-color: #fff;
+  border: none;
   display: flex;
   height: 40px;
-  font-size: 20px;
-  padding: 5px;
-  border: none;
-  background-color: white;
-  
-  
+  padding: 5px
 }
 
-.counter{
-  font-size: 20px;
- 
+.clear-all,.counter {
+  font-size: 20px
 }
 
-
-.footer-btn{
-  display:flex;
-  gap:20px;  
-}
-
-.show-incomplete,
-.show-complete,
-.show-all-tasks{
+.footer-btn {
   display: flex;
-  width: 200px;
-  margin-top: 20px;
-  border: none;
-  font-size: 18px;
-  align-items: center;
-  padding: 5px;
-  
+  gap: 20px;
+  justify-content: space-between
 }
 
-.delete-completed{
-  
-  width: 100%;
+.show-all-tasks,.show-complete,.show-incomplete {
+  align-items: center;
+  border: none;
+  display: flex;
+  font-size: 18px;
   margin-top: 20px;
-  height: 40px;
+  padding: 5px;
+  width: 200px
+}
+
+.delete-completed {
   border: none;
   font-size: 18px;
+  height: 40px;
+  margin-top: 20px;
+  width: 100%
+}
+
+@media screen and (max-width: 1200px) {
+  .App {
+      font-size:50px;
+      padding-top: 30%;
+      width: 100%
+  }
+
+  .add-task-section {
+      gap: 10px;
+      padding-top: 20px;
+      width: 100%
+  }
+
+  .add-task-input {
+      height: 50px;
+      width: 100%
+  }
+
+  .add-task-btn {
+      align-items: center;
+      color: #000;
+      height: 50px;
+      justify-content: center;
+      width: 70px
+  }
+
+  .todo-task-wrapper {
+      width: 80%
+  }
+
+  .footer-btn {
+      min-height: 70px
+  }
 }
