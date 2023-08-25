@@ -1,3 +1,4 @@
+
 @import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);body {
   background: #1c1c1c
 }
@@ -167,21 +168,32 @@ button:hover {
 }
 
 @media screen and (max-width: 1200px) {
+  
+  *{color: black;}
+  
+  h1{
+    color:white;
+  }
+
+  input{
+    border-radius: 0;
+    height: 50px;
+  }
   .App {
-      font-size:50px;
-      padding-top: 30%;
+      font-size:35px;
+      padding-top: 20%;
       width: 100%
   }
 
   .add-task-section {
       gap: 10px;
       padding-top: 20px;
-      width: 100%
+      width: 100%;
+      margin-bottom: 30px;
   }
 
   .add-task-input {
       height: 50px;
-      width: 100%
   }
 
   .add-task-btn {
@@ -189,12 +201,16 @@ button:hover {
       color: #000;
       height: 50px;
       justify-content: center;
-      width: 70px
+      width: 70px;
   }
 
   .todo-task-wrapper {
-      width: 80%
+      width: 100%;
+      padding: 10px 30px;
+      
   }
+
+  
 
   .footer-btn {
       min-height: 70px

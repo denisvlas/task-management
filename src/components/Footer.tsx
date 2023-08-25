@@ -64,13 +64,13 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
     }   
       {todo.length>0?<div className='footer-btn'>
             <button className='show-incomplete' onClick={()=>showIncompleteTasks()}>
-              Show Incomplete Tasks
+              Incomplete Tasks
             </button>
             <button className='show-complete' onClick={()=>showCompleteTasks()}>
-              Show complete Tasks
+              Complete Tasks
             </button>
             <button className='show-all-tasks' onClick={()=>showAll()}>
-              Show all Tasks
+             All Tasks
             </button>
         </div>: ''}
     
