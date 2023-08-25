@@ -6,8 +6,21 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
 
-  const [todo,setTodo]=useState<Todo[]>([])
+   const storedTodo = localStorage.getItem('todo');
+  const initialTodo = storedTodo ? JSON.parse(storedTodo) : [];
+  const [todo, setTodo] = useState<Todo[]>(initialTodo);
   
+  useEffect(()=>{
+    const todoData=localStorage.getItem('todo')
+    if(todoData){
+      setTodo(JSON.parse(todoData))
+      
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('todo',JSON.stringify(todo))
+  },[todo])
 
   return (
 

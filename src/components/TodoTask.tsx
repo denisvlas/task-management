@@ -1,4 +1,4 @@
-import React,{useState}from 'react'
+import React,{useEffect, useState}from 'react'
 import {Todo} from '../models'
 import Footer from './Footer'
 import TodoForm from './TodoForm'
@@ -11,6 +11,14 @@ interface Props{
 
 const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
 
+
+
+    useEffect(()=>{
+        const todoData=localStorage.getItem('todo')
+        if(todoData){
+            setTodo(JSON.parse(todoData))
+        }
+    },[setTodo])
 
     function deleteTodo(id:number){
         let newTodo=[...todo].filter(item=>item.id!=id)

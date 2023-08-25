@@ -17,7 +17,6 @@ function saveValue(){
     
     setTodo(todos)
     setInputValue('')
-    console.log(todos)
     
     
 }

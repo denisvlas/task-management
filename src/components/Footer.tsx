@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Todo } from '../models'
 
 interface Props{
@@ -13,6 +13,12 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
     
     const[completed,setCompleted]=useState(0)
     
+    useEffect(()=>{
+      const todoData=localStorage.getItem('todo')
+      if(todoData){
+          setTodo(JSON.parse(todoData))
+      }
+  },[setTodo])
     
     const initialCompletedCount = todo.filter(item => item.status).length;
       if (initialCompletedCount !== completed) {
