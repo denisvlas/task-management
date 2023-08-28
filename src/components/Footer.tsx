@@ -1,13 +1,26 @@
 import React,{useState} from 'react'
 import { Todo } from '../models'
+import axios from 'axios'; 
 
 interface Props{
     todo:Todo[]
     setTodo:React.Dispatch<React.SetStateAction<Todo[]>>
+    taskCount:number
 }
 
-const Footer:React.FC<Props>= ({todo,setTodo}) => {
+const Footer:React.FC<Props>= ({todo,setTodo,taskCount}) => {
+
+
     function clear(){
+      axios.delete('http://localhost:3001/api/delete-all')
+      .then(response => {
+          console.log(response.data);
+          // Actualizează starea pentru a reflecta ștergerea datelor sau întreprinde alte acțiuni corespunzătoare
+      })
+      .catch(error => {
+          console.error("Error clearing all records:", error);
+          // Afișează un mesaj de eroare sau întreprinde alte acțiuni corespunzătoare
+      });
         setTodo([])
     }
     
@@ -23,30 +36,35 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
         let todos=todo.filter(item=>{
         if(!item.status)    
            return item
+          axios.delete(`http://localhost:3001/api/delete/${item.id}`)
         })
         setTodo(todos)
     }
     
-    const [originalTodo,setOriginalTodo] = useState(todo)
     
     
     function showIncompleteTasks(){
-      const incomplete=todo.filter(item=>{
-        if(!item.status)
-        return item
+      axios.get(`http://localhost:3001/api/get-incompleted`).then(res=>{
+        if(res.data.length>0)
+        setTodo(res.data)
       })
-      setTodo(incomplete)
       
     }
     
     function showCompleteTasks(){
-      const complete=todo.filter(item=>item.status)
-      setTodo(complete)
+      axios.get(`http://localhost:3001/api/get-completed`).then(res=>{
+        if(res.data.length>0)
+        setTodo(res.data)
+      })
+     
     }
-    
+
+
+
     function showAll(){
-      setTodo(originalTodo)
-    }
+      axios.get('http://localhost:3001/api/get').then(response=>{
+        setTodo(response.data)
+    })}
     
     
     
@@ -56,7 +74,7 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
             {todo.length>1? 
             <div className='footer'>
                 <span className='counter'>
-                    |{todo.length} tasks | completed {completed} |
+                    |{taskCount} tasks | completed {completed} |
                  </span>
             <button className='clear-all' onClick={()=>clear()}>clear all</button></div>:
             <div></div>}

@@ -1,26 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {Todo} from '../models'
-
+import axios from 'axios'; 
 
 interface Props{
     todo:Todo[]
     setTodo:React.Dispatch<React.SetStateAction<Todo[]>>
+    setTaskCount:React.Dispatch<React.SetStateAction<number>>
 }
 
-const TodoForm:React.FC<Props> = ({todo,setTodo}) => {
+const TodoForm:React.FC<Props> = ({todo,setTodo,setTaskCount}) => {
 
     const [inputValue,setInputValue]=useState('')
 
-function saveValue(){
-    setInputValue(inputValue)
-    let todos=[...todo,{id:todo.length+1,title:inputValue,status:false,}]
+
     
-    setTodo(todos)
+
+const saveValue=()=>{
+
+    axios.post('http://localhost:3001/api/insert',{
+          id:todo.length+1,
+          task:inputValue,
+          status:false,
+        })
+    setTodo([...todo,{id:todo.length+1,task:inputValue,status:false}])
+    setTaskCount(todo.length+1)
+
     setInputValue('')
-    console.log(todos)
-    
-    
+   
 }
+
+
+
 function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
   if (event.key === 'Enter') {
     saveValue();
