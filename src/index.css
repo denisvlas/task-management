@@ -17,17 +17,27 @@
   padding-bottom: 10%;
   padding-top: 3%;
   text-align: center;
-  width: 70%
+  width: 80%
 }
 
 .App h1 {
   margin-bottom: 15px
 }
 
-.add-task-section {
+.task-list{
   display: flex;
-  gap: 50px;
-  justify-content: center
+  gap:10px;
+  align-items: center;
+  
+}
+
+
+.add-task-section {
+  width: 33.33%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 input {
@@ -52,9 +62,7 @@ input {
   flex-direction: column;
   gap: 10px;
   margin: 0 auto;
-  min-width: 400px;
-  padding: 10px 60px;
-  width: 60%
+  width: 33.33%
 }
 
 .todo-item {
@@ -99,6 +107,10 @@ input {
 
 .done {
   background: #c4fab1
+}
+
+.progress{
+  background-color: #f89730;
 }
 
 .done p {

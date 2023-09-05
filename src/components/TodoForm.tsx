@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Todo} from '../models'
+import {Todo, TodoStatusType} from '../models'
 
 
 interface Props{
@@ -13,7 +13,7 @@ const TodoForm:React.FC<Props> = ({todo,setTodo}) => {
 
 function saveValue(){
     setInputValue(inputValue)
-    let todos=[...todo,{id:todo.length+1,title:inputValue,status:false,}]
+    let todos=[...todo,{id:todo.length+1,title:inputValue,status:TodoStatusType.incompleted,}]
     
     setTodo(todos)
     setInputValue('')
@@ -27,10 +27,12 @@ function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
   }
 }
   return (
+   
     <div className='add-task-section'>
           <input placeholder='I have to...'onKeyPress={handleKeyPress} value={inputValue} onChange={e=>setInputValue(e.target.value)}/>
           <button className='add-task-btn'onClick={()=>saveValue()} >add</button>
     </div>
+   
   )
 }
 

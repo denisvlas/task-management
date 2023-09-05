@@ -1,5 +1,5 @@
 import React,{useState}from 'react'
-import {Todo, TodoStatus, TodoStatusType} from '../models'
+import {Todo, TodoStatusType} from '../models'
 import Footer from './Footer'
 import TodoForm from './TodoForm'
 import { statuses } from '../App'
@@ -10,7 +10,7 @@ interface Props{
 }
 
 
-const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
+const Progress:React.FC<Props> = ({todo,setTodo}) => {
 
 
     function deleteTodo(id:number){
@@ -55,19 +55,14 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
         setInputValue('')
         setEdit(null)
     }
-
-    function changeStatus(id:number,newStatus:TodoStatus){
-            todo.map(item=>{
-                setTodo(todo.map(item=>item.id===id?{...item,status:newStatus}:item))
-            })
-    }
   return (
     <div className='todo-task-wrapper'>
+            <h3>in progress</h3>
 
         {
-            todo.filter(item=>item.status===TodoStatusType.incompleted)
+            todo.filter(item=>item.status===TodoStatusType.progress)
             .map((item)=>(
-            <div className='not-done todo-item' key={item.id}>
+            <div className='progress todo-item' key={item.id}>
 
                 <div className='todo-task'>
                     {edit===item.id?
@@ -85,7 +80,7 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
                       <div className='todo-btn'>
                     <i className="bi bi-pencil-square modify-btn " onClick={()=>editTodo(item.id,item.title)}></i>
                    
-                    <select aria-label='Default select example' defaultValue={item.status} onChange={(e)=>changeStatus(item.id,e.target.value)}>
+                    <select aria-label='Default select example' defaultValue={item.status}>
                         {statuses.map(status=><option key={status} value={status}>{status}</option>)}
                     </select>
                      <i className="bi bi-trash3 delete-btn" onClick={()=>deleteTodo(item.id)}></i>
@@ -100,9 +95,8 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
 
             ))
         }
-         <Footer todo={todo} setTodo={setTodo}/>
     </div>
   )
 }
 
-export default TodoTask
+export default Progress
