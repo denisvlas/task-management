@@ -55,14 +55,27 @@ const Progress:React.FC<Props> = ({todo,setTodo}) => {
         setInputValue('')
         setEdit(null)
     }
+
+    function changeStatus(id:number,newStatus:any){
+        todo.map(item=>{
+            setTodo(todo.map(item=>item.id===id?{...item,status:newStatus}:item))
+        })
+
+
+}
+
+
+
   return (
-    <div className='todo-task-wrapper'>
+    <div className='todo-task-wrapper progress-wrapper'>
             <h3>in progress</h3>
 
         {
             todo.filter(item=>item.status===TodoStatusType.progress)
             .map((item)=>(
-            <div className='progress todo-item' key={item.id}>
+            <div className='progress todo-item' 
+            key={item.id} 
+            >
 
                 <div className='todo-task'>
                     {edit===item.id?
@@ -80,7 +93,7 @@ const Progress:React.FC<Props> = ({todo,setTodo}) => {
                       <div className='todo-btn'>
                     <i className="bi bi-pencil-square modify-btn " onClick={()=>editTodo(item.id,item.title)}></i>
                    
-                    <select aria-label='Default select example' defaultValue={item.status}>
+                    <select aria-label='Default select example' defaultValue={item.status} onChange={(e)=>changeStatus(item.id,e.target.value)}>
                         {statuses.map(status=><option key={status} value={status}>{status}</option>)}
                     </select>
                      <i className="bi bi-trash3 delete-btn" onClick={()=>deleteTodo(item.id)}></i>

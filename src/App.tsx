@@ -10,8 +10,11 @@ function App() {
 
   const [todo,setTodo]=useState<Todo[]>([
     {id:1,status:TodoStatusType.incompleted,title:'1'},
-    {id:1,status:TodoStatusType.done,title:'2'},
-    {id:1,status:TodoStatusType.progress,title:'3'},
+    {id:2,status:TodoStatusType.incompleted,title:'2'},
+    {id:3,status:TodoStatusType.incompleted,title:'3'},
+    {id:4,status:TodoStatusType.incompleted,title:'4'},
+    {id:5,status:TodoStatusType.incompleted,title:'5'},
+    {id:6,status:TodoStatusType.incompleted,title:'6'},
     
   ])
 

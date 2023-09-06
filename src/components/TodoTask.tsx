@@ -4,6 +4,7 @@ import Footer from './Footer'
 import TodoForm from './TodoForm'
 import { statuses } from '../App'
 
+
 interface Props{
     todo:Todo[]
     setTodo:React.Dispatch<React.SetStateAction<Todo[]>>
@@ -56,18 +57,24 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
         setEdit(null)
     }
 
-    function changeStatus(id:number,newStatus:TodoStatus){
+    function changeStatus(id:number,newStatus:any){
             todo.map(item=>{
                 setTodo(todo.map(item=>item.id===id?{...item,status:newStatus}:item))
             })
     }
+
+
   return (
     <div className='todo-task-wrapper'>
-
         {
             todo.filter(item=>item.status===TodoStatusType.incompleted)
             .map((item)=>(
-            <div className='not-done todo-item' key={item.id}>
+            <div
+             className='not-done todo-item'
+            key={item.id}
+
+             >
+             
 
                 <div className='todo-task'>
                     {edit===item.id?

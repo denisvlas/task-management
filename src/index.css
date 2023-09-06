@@ -1,6 +1,6 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);body {
-  background: #1c1c1c
+  background: #9f7e7e
 }
 
 * {
@@ -27,7 +27,6 @@
 .task-list{
   display: flex;
   gap:10px;
-  align-items: center;
   
 }
 
@@ -58,11 +57,13 @@ input {
 }
 
 .todo-task-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 0 auto;
-  width: 33.33%
+  width: 33.33%;
+  
 }
 
 .todo-item {
@@ -228,3 +229,8 @@ button:hover {
       min-height: 70px
   }
 }
+
+
+
+
+

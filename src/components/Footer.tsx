@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Todo } from '../models'
+import { Todo, TodoStatusType } from '../models'
 
 interface Props{
     todo:Todo[]
@@ -14,14 +14,14 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
     const[completed,setCompleted]=useState(0)
     
     
-    const initialCompletedCount = todo.filter(item => item.status).length;
+    const initialCompletedCount = todo.filter(item => item.status===TodoStatusType.done).length;
       if (initialCompletedCount !== completed) {
         setCompleted(initialCompletedCount);
       }
             
       function deleteSelected(){
         let todos=todo.filter(item=>{
-        if(!item.status)    
+        if(item.status!==TodoStatusType.done )    
            return item
         })
         setTodo(todos)
