@@ -6,7 +6,7 @@ export interface Todo{
 
 export enum TodoStatusType{
     
-    incompleted='incompleted',
+    incompleted='to do',
     done='done',
     progress='progress',
 

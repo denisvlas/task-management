@@ -6,8 +6,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import {ListTask} from './components/ListTask';
+import Footer from './components/Footer';
 
-export const statuses=[TodoStatusType.incompleted,TodoStatusType.progress,TodoStatusType.done]
+export const statuses=[TodoStatusType.progress,TodoStatusType.incompleted,TodoStatusType.done]
 
 function App() {
 

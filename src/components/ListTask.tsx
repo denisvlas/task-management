@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Todo, TodoStatusType } from '../models'
 import { statuses } from '../App';
 import { useDrag, useDrop } from 'react-dnd'
+import Footer from './Footer';
 
 interface Props {
     todo: Todo[];
@@ -70,6 +71,7 @@ const Section=({ status,todo,todos,inProgress,done,setTodo }: { status: string,t
       <div ref={drop} className='todo-task-wrapper'>
            <Header status={status} count={tasksToMap.length} bg={bg}/>
            {tasksToMap.map(item=><Task bg={bg} key={item.id} todo={todo} setTodo={setTodo} item={item}/>)}
+           
       </div>
     )
 }
