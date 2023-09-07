@@ -29,8 +29,9 @@ function App() {
     <div className="App ">
       <h1>todos</h1>
       <TodoForm todo={todo} setTodo={setTodo}/>
+      <Footer todo={todo} setTodo={setTodo}/>
       <ListTask todo={todo} setTodo={setTodo}/>
-    </div>
+      </div>
 </DndProvider>
   );
 }

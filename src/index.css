@@ -1,6 +1,6 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);body {
-  background: #9f7e7e
+  background: #313131
 }
 
 * {
@@ -11,10 +11,10 @@
 }
 
 .App {
-  color: #ebebeb;
+  color: rgb(255, 255, 255);
   font-size: 40px;
   margin: 0 auto;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
   padding-top: 3%;
   text-align: center;
   width: 80%
@@ -27,7 +27,10 @@
 .task-list{
   display: flex;
   gap:10px;
-  
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+
 }
 
 
@@ -57,12 +60,12 @@ input {
 }
 
 .todo-task-wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 0 auto;
+  margin: 50px auto;
   width: 33.33%;
+  padding: 5px;
   
 }
 
@@ -135,16 +138,20 @@ button:hover {
   scale: 1.2
 }
 
-.footer,.footer .clear-all {
+.footer,.footer  {
   align-items: center;
   background-color: #fff;
   color: rgba(0,0,0,.826);
   display: flex;
   justify-content: space-between;
-  padding: 0 5px
+  padding: 0 5px;
+  width: 33.33%;
+  margin: 0 auto;
+  margin-bottom: 30px;
 }
 
 .clear-all {
+  align-items: center;
   background-color: #fff;
   border: none;
   display: flex;
@@ -233,4 +240,19 @@ button:hover {
 
 
 
+.onOver{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 50px auto;
+  width: 33.33%;
+  background-color: #f6f6f663;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 6px 7px black;
+}
+
+.dragging{
+  box-shadow: 0 4px 6px yellow ;
+}
 

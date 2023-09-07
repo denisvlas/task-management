@@ -68,9 +68,9 @@ const Section=({ status,todo,todos,inProgress,done,setTodo }: { status: string,t
     }
 
     return(
-      <div ref={drop} className='todo-task-wrapper'>
+      <div ref={drop}  className={isOver?'onOver':'todo-task-wrapper'}>
            <Header status={status} count={tasksToMap.length} bg={bg}/>
-           {tasksToMap.map(item=><Task bg={bg} key={item.id} todo={todo} setTodo={setTodo} item={item}/>)}
+           {tasksToMap.map(item=><Task status={status} bg={bg} key={item.id} todo={todo} setTodo={setTodo} item={item}/>)}
            
       </div>
     )
@@ -80,7 +80,7 @@ const Header=({status,count,bg}:{status:string,count:number,bg:string})=>{
 
     return (
         
-        <div style={{ backgroundColor: bg,display:'flex',alignItems:'center',height:50,paddingLeft:14 }}>
+        <div style={{ backgroundColor: bg,display:'flex',alignItems:'center',justifyContent:'center',height:50,paddingLeft:14,color:'black',marginBottom:20}}>
         {status}
         <div style={{marginLeft:20}}>{count}</div>
         </div>
@@ -89,7 +89,36 @@ const Header=({status,count,bg}:{status:string,count:number,bg:string})=>{
 }
 
 
-const Task=({bg,item,todo,setTodo}:{bg:string,item:Todo,todo:Todo[],setTodo:React.Dispatch<React.SetStateAction<Todo[]>>})=>{
+const Task=({bg,item,todo,setTodo,status}:{status:string,bg:string,item:Todo,todo:Todo[],setTodo:React.Dispatch<React.SetStateAction<Todo[]>>})=>{
+
+
+  function deleteTodo(id:number){
+    let newTodo=[...todo].filter(item=>item.id!=id)
+    setTodo(newTodo)
+   
+}
+  const [edit,setEdit]=useState<null|number>(null)
+
+  function editTodo(id:number,title:string){
+    setEdit(id)
+    setInputValue(title)
+}
+
+const [inputValue,setInputValue]=useState('')
+
+function saveValue(id:number){
+    
+   let todos=[...todo].map((item)=>{
+        if(item.id===id){
+            item.title=inputValue
+        }
+        return item
+   })
+   setTodo(todos)
+    setInputValue('')
+    setEdit(null)
+    localStorage.setItem('tasks',JSON.stringify(todo))
+}
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'task',
@@ -98,9 +127,34 @@ const Task=({bg,item,todo,setTodo}:{bg:string,item:Todo,todo:Todo[],setTodo:Reac
           isDragging: !!monitor.isDragging()
         })
       }))
+
+
+
+      
+
     return(
-        <div ref={drag} className='not-done todo-item'>
-            <p>{item.title}</p>
+        <div  ref={drag} className={`${status==='to do'?'not-done':status==='progress'?'progress':'done'} todo-item ${isDragging?'dragging':''}`}>
+            <div className='todo-task'>
+                    {edit===item.id?
+                    <div className='edit-form'>
+                    <div >
+                        <input  className="todo-task" placeholder='I have to...' value={inputValue} onChange={e=>setInputValue(e.target.value)}/>
+                    </div>
+                    <div>
+                         <button className='apply-task-btn'onClick={()=>saveValue(item.id)} >apply</button>
+                    </div>
+                </div>:(
+                   <div className='todo-task'>
+                    <p>{item.title}</p>
+
+                      <div className='todo-btn'>
+                    <i className="bi bi-pencil-square modify-btn " onClick={()=>editTodo(item.id,item.title)}></i>
+                     <i className="bi bi-trash3 delete-btn" onClick={()=>deleteTodo(item.id)}></i>
+                    
+                </div></div>)
+                }
+                   
+                </div>
         </div>
     )
 }

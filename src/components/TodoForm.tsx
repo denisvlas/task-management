@@ -42,7 +42,7 @@ function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
           {/* <input placeholder='I have to...'onKeyPress={handleKeyPress} value={inputValue} onChange={e=>setInputValue(e.target.value)}/>
           <button className='add-task-btn'onClick={()=>saveValue()} >add</button> */}
           <input onKeyPress={handleKeyPress} type="text" className='input-task' value={task.title} onChange={(e)=>setTask({...task,id:todo.length+1,title:e.target.value})}/>
-        <button  onClick={()=>saveValue()} className='add-task-btn'>create</button>
+        <button  onClick={()=>saveValue()} className='add-task-btn'>add</button>
     </div>
    
   )

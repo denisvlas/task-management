@@ -9,6 +9,7 @@ interface Props{
 const Footer:React.FC<Props>= ({todo,setTodo}) => {
     function clear(){
         setTodo([])
+        localStorage.setItem('tasks',JSON.stringify([]))
     }
     
     const[completed,setCompleted]=useState(0)
@@ -60,7 +61,7 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
                  </span>
             <button className='clear-all' onClick={()=>clear()}>clear all</button></div>:
             <div></div>}
-            {completed>0&&<button className='delete-completed' onClick={()=>deleteSelected()}>delete completed</button>
+            {/* {completed>0&&<button className='delete-completed' onClick={()=>deleteSelected()}>delete completed</button>
     }   
       {todo.length>0?<div className='footer-btn'>
             <button className='show-incomplete' onClick={()=>showIncompleteTasks()}>
@@ -73,7 +74,7 @@ const Footer:React.FC<Props>= ({todo,setTodo}) => {
              All Tasks
             </button>
         </div>: ''}
-    
+     */}
         
         </div>
       )
