@@ -63,7 +63,7 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
             })
     }
 
-
+   
   return (
     <div className='todo-task-wrapper'>
         {
@@ -72,7 +72,7 @@ const TodoTask:React.FC<Props> = ({todo,setTodo}) => {
             <div
              className='not-done todo-item'
             key={item.id}
-
+                       
              >
              
 

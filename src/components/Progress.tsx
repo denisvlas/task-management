@@ -66,6 +66,7 @@ const Progress:React.FC<Props> = ({todo,setTodo}) => {
 
 
 
+
   return (
     <div className='todo-task-wrapper progress-wrapper'>
             <h3>in progress</h3>
@@ -75,6 +76,9 @@ const Progress:React.FC<Props> = ({todo,setTodo}) => {
             .map((item)=>(
             <div className='progress todo-item' 
             key={item.id} 
+            
+            
+                
             >
 
                 <div className='todo-task'>

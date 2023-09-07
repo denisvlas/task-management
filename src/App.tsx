@@ -9,17 +9,18 @@ export const statuses=[TodoStatusType.incompleted,TodoStatusType.progress,TodoSt
 function App() {
 
   const [todo,setTodo]=useState<Todo[]>([
-    {id:1,status:TodoStatusType.incompleted,title:'1'},
-    {id:2,status:TodoStatusType.incompleted,title:'2'},
-    {id:3,status:TodoStatusType.incompleted,title:'3'},
-    {id:4,status:TodoStatusType.incompleted,title:'4'},
-    {id:5,status:TodoStatusType.incompleted,title:'5'},
-    {id:6,status:TodoStatusType.incompleted,title:'6'},
+   
     
   ])
 
-  return (
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTodo(JSON.parse(storedTasks));
+    }
+  }, []);
 
+  return (
     <div className="App ">
       <h1>todos</h1>
       <TodoForm todo={todo} setTodo={setTodo}/>

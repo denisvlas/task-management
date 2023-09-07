@@ -11,7 +11,7 @@ interface Props {
 
 const TaskList: React.FC<Props> = ({ todo, setTodo }) => {
   return (
-    <div className='task-list'>
+    <div  className='task-list'>
       <Progress todo={todo} setTodo={setTodo} />
       <TodoTask todo={todo} setTodo={setTodo} />
       <Done todo={todo} setTodo={setTodo} />
