@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Todo, TodoStatusType} from '../models'
+import { title } from 'process'
 
 
 interface Props{
@@ -9,28 +10,42 @@ interface Props{
 
 const TodoForm:React.FC<Props> = ({todo,setTodo}) => {
 
-  const [task,setTask]=useState<Todo>({
-    id:0,
-    title:'',
-    status:TodoStatusType.incompleted
-})
+//   const [task,setTask]=useState<Todo>({
+//     id:0,
+//     title:'',
+//     status:TodoStatusType.incompleted
+//   })
 
+
+// function saveValue(){
+//   setTodo(prev=>{
+//     const list=[...prev,task]
+//     localStorage.setItem('tasks',JSON.stringify(list))
+//     return list
+
+    
+// })
+
+// setTask({
+//       id:todo.length+1,
+//       title:'',
+//       status:TodoStatusType.incompleted
+//   })
+    
+    
+// }
+
+const [input,setInput]=useState('')
 
 function saveValue(){
-  setTodo(prev=>{
-    const list=[...prev,task]
-    localStorage.setItem('tasks',JSON.stringify(list))
-    return list
-})
-setTask({
-    id:0,
-    title:'',
-    status:TodoStatusType.incompleted
-})
 
-    
-    
+  const newTodo=[...todo,{id:todo.length+1,status:TodoStatusType.incompleted,title:input,description:null,comment:null}]
+  localStorage.setItem('tasks',JSON.stringify(newTodo))
+  setTodo(newTodo)
+  setInput('')
+
 }
+
 function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
   if (event.key === 'Enter') {
     saveValue();
@@ -41,7 +56,7 @@ function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
     <div className='add-task-section'>
           {/* <input placeholder='I have to...'onKeyPress={handleKeyPress} value={inputValue} onChange={e=>setInputValue(e.target.value)}/>
           <button className='add-task-btn'onClick={()=>saveValue()} >add</button> */}
-          <input onKeyPress={handleKeyPress} type="text" className='input-task' value={task.title} onChange={(e)=>setTask({...task,id:todo.length+1,title:e.target.value})}/>
+          <input onKeyPress={handleKeyPress} placeholder='Add a task ...' type="text" className='input-task' value={input} onChange={(e)=>setInput(e.target.value)}/>
         <button  onClick={()=>saveValue()} className='add-task-btn'>add</button>
     </div>
    
