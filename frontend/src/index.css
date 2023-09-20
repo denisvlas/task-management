@@ -1,19 +1,21 @@
-
 @import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);
 
 body {
-background: rgb(52, 60, 58);
+  background: rgb(52, 60, 58);
 }
 
 * {
   box-sizing: border-box;
-  font-family: Montserrat Alternates,sans-serif;
+  font-family: Montserrat Alternates, sans-serif;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
-  .not-found a{color:white;font-size: 40px;text-decoration: underline;}
-.not-found{
-
+.not-found a {
+  color: white;
+  font-size: 40px;
+  text-decoration: underline;
+}
+.not-found {
   color: white;
   height: 70vh;
   display: flex;
@@ -21,31 +23,30 @@ background: rgb(52, 60, 58);
   justify-content: center;
   align-items: center;
   font-size: 60px;
-  gap:20px
+  gap: 20px;
 }
 
-.user-aside{
+.user-aside {
   font-size: 30px;
-  background-color: #000;
-  width: 300px;
-  padding: 15px;
-  position: absolute;
-  right: 0;
-  top:50px;
+  background-color: #8d7d7d;
+  width: 250px;
+  height: 100vh;
+  padding: 15px 15px;
+  position: fixed;
+  right: 0px;
+  top: 60px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
 }
-.exit-icon{
+.exit-icon {
   font-style: normal;
 }
-.exit-section{
+.exit-section {
   display: flex;
   gap: 10px;
-  
 }
-.exit-section:hover{
+.exit-section:hover {
   color: #b1aeae;
   cursor: pointer;
 }
@@ -56,22 +57,24 @@ background: rgb(52, 60, 58);
   padding-bottom: 5%;
   text-align: center;
   height: 100vh;
-  position:relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 120px;
 }
 
-.app-header{
+.app-header {
+  position: fixed;
   padding: 0 10%;
   display: flex;
+  width: 100%;
+  z-index: 1000;
   justify-content: space-between;
   align-items: center;
   background-color: #272626;
 }
 
-
-.auth{
+.auth {
   color: rgb(255, 255, 255);
   font-size: 40px;
   margin: 0 auto;
@@ -79,30 +82,26 @@ background: rgb(52, 60, 58);
   margin-top: 2%;
   text-align: center;
   width: 30%;
-  position:relative;
+  position: relative;
   background: #262020;
   border-radius: 20px;
   padding: 40px;
- 
-  
 }
-.auth h1{
+.auth h1 {
   margin-bottom: 55px;
 }
-.auth h2{
+.auth h2 {
   font-size: 40px;
 }
 
- 
-
-.have-account{
+.have-account {
   display: flex;
   align-items: center;
   color: rgb(0, 234, 255);
   text-decoration: underline;
 }
 
-.footer-auth{
+.footer-auth {
   display: flex;
   flex-direction: column;
   font-size: 20px;
@@ -110,15 +109,14 @@ background: rgb(52, 60, 58);
   width: 100%;
   margin-top: 25px;
   align-items: center;
-  
 }
-.reg-warning{
+.reg-warning {
   font-size: 17px;
   color: red;
   margin-bottom: 10px;
 }
-.signup-btn{
-  color:white;
+.signup-btn {
+  color: white;
   font-size: 25px;
   border: none;
   border-radius: 3px;
@@ -126,51 +124,56 @@ background: rgb(52, 60, 58);
   background-color: rgb(121, 117, 117);
 }
 
-.signup-btn:hover{
+.signup-btn:hover {
   background-color: rgb(157, 155, 155);
 }
 
-.reg-form{
+.reg-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 40px;
 }
 
-.reg-form input{
+.reg-form input {
   font-size: 18px;
   margin-top: 10px;
 }
 
-.reg-form label{
+.reg-form label {
   font-size: 30px;
   margin-top: 20px;
 }
 
-.user-attached{
-
+.user-attached {
   display: flex;
-  color:white;
+  color: white;
   font-size: 20px;
 }
-.item-attached{  
+.item-attached {
   position: absolute;
   right: -10px;
-  top: -10px;
+  top: -13px;
   border-radius: 5px;
   background: rgb(255, 238, 0);
   padding: 4px;
   font-size: 15px;
 }
-.aside-user-section{
-  top:30px;
+.my-item-indicator {
+  background-color: rgb(249, 108, 37);
+}
+.not-my-item-indicator {
+  background-color: rgb(0, 204, 255);
+}
+.aside-user-section {
+  top: 30px;
   position: absolute;
   width: 100%;
 }
-.item-title{
+.item-title {
   width: 100%;
 }
-.footer-auth-btn{
+.footer-auth-btn {
   width: 100%;
   display: flex;
   align-items: center;
@@ -181,16 +184,15 @@ background: rgb(52, 60, 58);
   font-weight: 200;
 }
 
-.task-list{
+.task-list {
   display: flex;
-  gap:10px;
+  gap: 10px;
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
-
 }
 
-.progress-bar-container{
+.progress-bar-container {
   height: 50px;
   width: 100%;
   display: flex;
@@ -199,17 +201,15 @@ background: rgb(52, 60, 58);
   font-size: 20px;
   padding: 0 3px;
   margin-top: 10px;
-  
 }
 
-.progress-bar{
+.progress-bar {
   background-color: rgb(115, 210, 98);
   height: 3px;
   border-radius: 5px;
   transition: all 0.5s ease;
   display: flex;
 }
-
 
 .add-task-section {
   width: 33.33%;
@@ -219,18 +219,20 @@ background: rgb(52, 60, 58);
   margin: 0 auto;
 }
 
-input,textarea {
+input,
+textarea {
   padding: 15px;
   width: 100%;
   border-radius: 5px;
 }
 
-.input-task{
+.input-task {
   margin-bottom: 10px;
-
 }
 
-.add-task-btn,.apply-task-btn,input {
+.add-task-btn,
+.apply-task-btn,
+input {
   border: none;
   display: flex;
   font-size: 23px;
@@ -238,21 +240,22 @@ input,textarea {
   border-radius: 5px;
 }
 
-.edit-btn{
+.edit-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap:10px;
+  gap: 10px;
   margin-left: 10px;
 }
-.apply-task-btn{
+.apply-task-btn {
   font-size: 18px;
   height: 25px;
   align-items: center;
 }
 
-.add-task-btn,.apply-task-btn {
-  padding: 5px
+.add-task-btn,
+.apply-task-btn {
+  padding: 5px;
 }
 
 .todo-task-wrapper {
@@ -264,7 +267,7 @@ input,textarea {
   margin: 20px 0;
 }
 
-.todo-item  {
+.todo-item {
   position: relative;
   color: #000;
   display: flex;
@@ -273,49 +276,85 @@ input,textarea {
   padding: 10px;
   border-radius: 7px;
   text-align: start;
-  
-  
 }
 
-.todo-item:hover{
+.todo-item:hover {
   cursor: grab;
   z-index: 200;
   box-shadow: 0 3px 6px rgb(161, 155, 155);
-  
 }
 .todo-task {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  
+  z-index: 10;
 }
-.todo-task-click{
+
+/* Exemplu de CSS */
+.my-task {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.my-task::before {
+  content: "";
+  position: absolute;
+  background:rgb(229, 244, 63);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 7px;
+  animation: flames 1.5s infinite alternate;
+
+  z-index: -0.1;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes flames {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.todo-task-click {
   word-break: break-all;
   display: flex;
   justify-content: space-between;
   width: 100%;
   border-radius: 7px;
-  transition: all ease 0.3s ;
+  transition: all ease 0.3s;
   padding-left: 5px;
 }
 
-
-
-.edit-form{
+.edit-form {
   display: flex;
   align-items: center;
 }
 
 .edit-form input {
-  text-align: left
+  text-align: left;
 }
 
 .edit-form input:hover {
-  border: 1px solid grey
+  border: 1px solid grey;
 }
 
 .edit-form input:focus {
-  background: #f2ed5e
+  background: #dededc;
 }
 
 .todo-btn {
@@ -328,51 +367,44 @@ input,textarea {
 }
 
 .done {
-  background: #c4fab1
+  background: #c4fab1;
 }
 
-.progress{
+.progress {
   background-color: #f89730;
 }
 
-
-
 .not-done {
-  background: #fff
+  background: #fff;
 }
 
 button:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
-
-
-.more-btn{
+.more-btn {
   display: flex;
   position: absolute;
-  z-index: 200;
   flex-direction: column;
-  right: -20px;
-  bottom: -55px;
-  background: #000;
-  
+  right: 0;
+  top: 50px;
 }
-.more-btn span{
+.more-btn span {
   border: 1px rgb(139, 139, 139) solid;
   text-align: center;
   width: 100%;
+  margin: 0 auto;
   font-size: 20px;
   padding: 2px;
   color: white;
   background: rgb(112, 109, 109);
 }
 
-
-
-.footer,.footer  {
+.footer,
+.footer {
   align-items: center;
   background-color: #fff;
-  color: rgba(0,0,0,.826);
+  color: rgba(0, 0, 0, 0.826);
   display: flex;
   justify-content: space-between;
   padding: 0 5px;
@@ -388,27 +420,30 @@ button:hover {
   border: none;
   display: flex;
   height: 40px;
-  padding: 5px
+  padding: 5px;
 }
 
-.clear-all,.counter {
-  font-size: 20px
+.clear-all,
+.counter {
+  font-size: 20px;
 }
 
 .footer-btn {
   display: flex;
   gap: 20px;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.show-all-tasks,.show-complete,.show-incomplete {
+.show-all-tasks,
+.show-complete,
+.show-incomplete {
   align-items: center;
   border: none;
   display: flex;
   font-size: 18px;
   margin-top: 20px;
   padding: 5px;
-  width: 200px
+  width: 200px;
 }
 
 .delete-completed {
@@ -416,10 +451,10 @@ button:hover {
   font-size: 18px;
   height: 40px;
   margin-top: 20px;
-  width: 100%
+  width: 100%;
 }
 
-.onOver{
+.onOver {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -431,14 +466,11 @@ button:hover {
   box-shadow: 0 6px 7px black;
 }
 
-
-
-
-.dragging{
-  box-shadow: 0 4px 6px yellow ;
+.dragging {
+  box-shadow: 0 4px 6px yellow;
 }
 
-.popup-background{
+.popup-background {
   overflow-y: auto;
   background-color: #0000008a;
   height: 100vh;
@@ -449,54 +481,53 @@ button:hover {
   z-index: 500;
 }
 
-.pop-container{
+.pop-container {
   display: flex;
   padding: 20px;
-  min-height:600px;
+  min-height: 600px;
   width: 900px;
   margin: 5% auto;
   background: #717070;
   border-radius: 8px;
   flex-direction: column;
 }
-.edit-section{
+.edit-section {
   display: flex;
   justify-content: space-between;
   height: 100%;
   width: 100%;
 }
-.popup-inputs{
-  width: 70%
+.popup-inputs {
+  width: 70%;
 }
-.aside-popup{
+.aside-popup {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:25%;
+  width: 25%;
   margin-left: 20px;
   margin-bottom: 20px;
   padding: 5px 0;
 }
-.popup-members{
+.popup-members {
   width: 100%;
   height: 30px;
   align-items: center;
   color: white;
   border-radius: 5px;
   display: flex;
-  gap:10px;
+  gap: 10px;
   font-size: 23px;
   padding: 0 10px;
   background-color: rgba(168, 167, 167, 0.473);
 }
 
-.popup-members:hover{
+.popup-members:hover {
   background-color: rgba(172, 168, 168, 0.568);
   cursor: pointer;
-  
 }
-.close-modal{
+.close-modal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -505,92 +536,115 @@ button:hover {
   height: 45px;
   border-radius: 50%;
   transition: all 0.05s;
-
 }
 
-.close-modal:hover{
+.close-modal:hover {
   background-color: rgba(172, 168, 168, 0.235);
 }
 
-
-.pop-header{
+.pop-header {
   word-break: break-all;
   width: 100%;
   height: 20%;
   display: flex;
+  z-index: 1000;
   font-size: 30px;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.card-details{
+.card-details {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
 }
-.users{
+.users {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 120px;
+  overflow-y: auto;
+}
+/* ////////////////////////////////////////////////// */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e1e0e0;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+  background-color: #989393;
+}
+::-webkit-resizer {
+  background-image: url(file:///C:/DEN/denka/react/react-todo-ts/task-management/frontend/img/free-resize-1438243-1216204.webp);
+  background-size: cover;
 }
 
-.user,.user-null{
+/* ////////////////////////////////////////////////// */
+.user,
+.user-null {
   width: 90%;
   margin-top: 2px;
   display: flex;
-  font-size: 25px;
+  font-size: 15px;
   padding: 5px;
   border-radius: 3px;
   background: #373636;
 }
 
-.user-null{
+.user-null {
   justify-content: center;
 }
-.card-title{
-font-size: 40px;
+.card-title {
+  font-size: 40px;
 }
 
-.card-status{
+.card-status {
   font-size: 20px;
   margin-top: 10px;
 }
 
-.card-icon{
+.card-icon {
   font-size: 30px;
   margin-right: 10px;
 }
 
-.description-section-header,.comment-section-header{
+.description-section-header,
+.comment-section-header {
   margin-bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.hr-modal{
+.description-section .no-description-title{
+  display: block;
+  margin: 90px 0;
+  color: rgb(90, 210, 234);
+}
+
+.hr-modal {
   width: 100%;
   margin-bottom: 20px;
- 
 }
 
-.comment-section{
+.comment-section {
   max-height: 500px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 }
-.description-section{
+.description-section {
   max-height: 500px;
-  margin-bottom: 20px;  
-
+  margin-bottom: 20px;
 }
 
-.card-edit-delete-btn{
+.card-edit-delete-btn {
   display: flex;
 }
 
-.description-text{
+.description-text {
   margin-top: 10px;
   overflow-y: auto;
   font-size: 20px;
@@ -601,53 +655,41 @@ font-size: 40px;
   min-height: 70px;
   resize: vertical;
   padding: 5px;
-  
-  
 }
-.description-text a,.description-text li{
-  color:rgb(125, 231, 116);
+.description-text a,
+.description-text li {
+  color: rgb(125, 231, 116);
   margin-left: 20px;
 }
 
-.edit-description{
+.edit-description {
   width: 50px;
   font-size: 30px;
   border-radius: 10px;
 }
 
-.edit-description:hover{
+.edit-description:hover {
   background-color: rgba(172, 168, 168, 0.235);
-
 }
 
-.save-cancel-btn{
+.save-cancel-btn {
   display: flex;
-  justify-content: flex-end;  
+  justify-content: flex-end;
   gap: 10px;
 }
 
-.card-description-icon,.card-comment-icon{
+.card-description-icon,
+.card-comment-icon {
   font-size: 30px;
   margin-right: 10px;
 }
 
-.description-title,.comment-title{
+.description-title,
+.comment-title {
   font-size: 30px;
 }
 
-
-.input-comment{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-height: 400px;
-  position: relative;
-  
-}
-
-
-
-.input-description{
+.input-comment {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -655,62 +697,65 @@ font-size: 40px;
   position: relative;
 }
 
-.ql-toolbar{
-display: flex;
-background-color: rgb(225, 225, 225);
+.input-description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 400px;
+  position: relative;
 }
-.ql-snow .ql-picker-label::before{
+
+.ql-toolbar {
+  display: flex;
+  background-color: rgb(225, 225, 225);
+}
+.ql-snow .ql-picker-label::before {
   margin-right: 10px;
 }
 
-.ql-toolbar.ql-snow{
-  border: none!important;
+.ql-toolbar.ql-snow {
+  border: none !important;
 }
 
-.ql-container.ql-snow{
-  border: none!important;
+.ql-container.ql-snow {
+  border: none !important;
 }
-.ql-editor{
+.ql-editor {
   overflow-y: auto;
-  overflow-x:hidden;
+  overflow-x: hidden;
   resize: vertical;
   max-height: 300px;
   min-height: 45px;
 }
-.description-editor{
+.description-editor {
   min-height: 45px;
   background: rgb(255, 253, 253);
   color: #000;
 }
 
-.ql-snow .ql-tooltip{
-  background:#ffffffcb!important;
-  left:  50% !important;
-  transform: translate(-60%)!important;
+.ql-snow .ql-tooltip {
+  background: #ffffffcb !important;
+  left: 50% !important;
+  transform: translate(-60%) !important;
   width: 60%;
 }
 
-.input-comment{
+.input-comment {
   height: 80px;
-  }
+}
 
-.description-save-btn,.comment-save-btn{
+.description-save-btn,
+.comment-save-btn {
   font-size: 20px;
   padding: 0 3px;
   align-self: flex-end;
   margin-top: 10px;
 }
 
-
-
-
-
-
-.card-inputs{
+.card-inputs {
   font-size: 20px;
   padding: 5px;
   resize: none;
-
 }
 
 /* 
@@ -721,36 +766,35 @@ background-color: rgb(225, 225, 225);
   border: 1px white solid; 
 } */
 
-.main{
+.main {
   width: 80%;
-  margin: 0 auto;
+  margin: 120px auto;
 }
 
-.main-img{
-width: 50px;
-margin: 5px 0;
-border-radius: 50%;
+.main-img {
+  width: 50px;
+  margin: 5px 0;
+  border-radius: 50%;
 }
-.project-info{
+.project-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.user-info-btn{
+.user-info-btn {
   display: flex;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 }
 
-.user-info-btn:hover{
+.user-info-btn:hover {
   color: rgb(224, 223, 223);
   cursor: pointer;
 }
-.user-info-btn .hello-user{
+.user-info-btn .hello-user {
   font-size: 30px;
   font-weight: 100;
 }
-
 
 /* .hello-user{
   font-weight: 100;
@@ -760,4 +804,3 @@ border-radius: 50%;
   top: 60px;
   left: 0px;
 } */
-

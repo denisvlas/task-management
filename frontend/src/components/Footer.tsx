@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-import { Todo, TodoStatusType } from "../models";
+import { ProjectType, Todo, TodoStatusType } from "../models";
+import axios from "axios";
 
 interface Props {
   todo: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+  project:ProjectType|undefined;
 }
 
-const Footer: React.FC<Props> = ({ todo, setTodo }) => {
-  function clear() {
-    setTodo([]);
-    localStorage.setItem("tasks", JSON.stringify([]));
+const Footer: React.FC<Props> = ({ todo, setTodo,project, }) => {
+  async function clear() {
+    try {
+      await axios.delete(`http://localhost:3001/delete-all/${project?.projects_id}`);
+      setTodo([]);
+      localStorage.setItem("tasks", JSON.stringify([]));
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const [completed, setCompleted] = useState(0);

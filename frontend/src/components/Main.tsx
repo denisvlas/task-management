@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
-import { ProjectType, Todo, TodoStatusType } from "../models";
+import { ProjectType, Todo, TodoStatusType, User } from "../models";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -8,8 +8,15 @@ import { ListTask } from "./ListTask";
 import Footer from "./Footer";
 import PopUp from "./PopUp";
 import { ProgressBar } from "./ProgressBar";
-import { Navigate, Route, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  json,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import NotFound from "../pages/NotFound";
+import axios from "axios";
 
 export const statuses = [
   TodoStatusType.incompleted,
@@ -20,35 +27,63 @@ export const statuses = [
 function Main({ projects }: { projects: ProjectType[] }) {
   const [todo, setTodo] = useState<Todo[]>([]);
   const [modal, setModal] = useState<Todo | null>(null);
-  const { projectName, username } = useParams();
-  const p = projects.find((p) => p.name === projectName);
-  const [project, setProject] = useState<ProjectType | undefined>(p);
+  const { projectName, username, userId } = useParams();
+  const [project, setProject] = useState<ProjectType>();
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTodo(JSON.parse(storedTasks));
+    const p = projects.find((p) => p.name === projectName);
+    if (p != undefined) {
+      localStorage.setItem("project", JSON.stringify(p));
     }
-  }, []);
-  useEffect(() => {
-    if (project) {
-      localStorage.setItem("project", JSON.stringify(project));
-    }
-  }, [project]);
-  useEffect(() => {
     const storedProject = localStorage.getItem("project");
     if (storedProject) {
       setProject(JSON.parse(storedProject));
     }
-  }, []);
+    if (project != undefined) {
+      fetchTasks();
+      fetchUsers();
+    }
+  }, [project?.projects_id]);
+
+  async function fetchTasks() {
+    try {
+      if (project != undefined) {
+        const res = await axios.get(
+          `http://localhost:3001/tasks/${project?.projects_id}`
+        );
+
+        setTodo(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const [users, setUsers] = useState<User[]>([]);
+  const [userRole, setUserRole] = useState<string>("");
+  useEffect(() => {
+    if (userId && users.length > 0) {
+      const user = users.find((user) => user.id === parseInt(userId));
+      setUserRole(user?.role || "nu s-a gasit user role");
+    }
+  }, [userId, users]);
+  console.log(userRole);
+
+  async function fetchUsers() {
+    try {
+      const res = await axios.get(
+        `http://localhost:3001/users/${project?.projects_id}`
+      );
+      setUsers(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   const [showAside, setShowAside] = useState(false);
   const navigate = useNavigate();
-function exit(){
-  navigate('/projects')
-}
-  if (!p) {
-    return <NotFound />;
+  function exit() {
+    navigate("/projects");
   }
 
   return (
@@ -65,11 +100,11 @@ function exit(){
             className="user-info-btn"
           >
             <i className="bi bi-person user-icon"></i>
-            <h3 className="hello-user">hello, {username}</h3>
+            <h3 className="hello-user">{username}</h3>
           </div>
           {showAside && (
             <div className="user-aside">
-              <div onClick={()=>exit()} className="exit-section">
+              <div onClick={() => exit()} className="exit-section">
                 <i className="bi bi-box-arrow-left exit-icon"></i>
                 <p>exit</p>
               </div>
@@ -79,16 +114,33 @@ function exit(){
         <div className="main">
           {modal && (
             <PopUp
+              userRole={userRole}
+              userId={userId}
+              setUsers={setUsers}
+              users={users}
+              project={project}
               todo={todo}
               setTodo={setTodo}
               modal={modal}
               setModal={setModal}
             />
           )}
-          <TodoForm todo={todo} setTodo={setTodo} />
-          <Footer todo={todo} setTodo={setTodo} />
+          {userRole === "admin" && (
+            <TodoForm
+              userId={userId}
+              project={project}
+              todo={todo}
+              setTodo={setTodo}
+            />
+          )}
+
+          {userRole==='admin'&&<Footer project={project} todo={todo} setTodo={setTodo} />}
           <ProgressBar todo={todo} setTodo={setTodo} />
           <ListTask
+            userRole={userRole}
+            userId={userId}
+            setUsers={setUsers}
+            users={users}
             modal={modal}
             setModal={setModal}
             todo={todo}

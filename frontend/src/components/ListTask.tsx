@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Todo, TodoStatusType } from "../models";
+import { Todo, TodoStatusType, User } from "../models";
 import { statuses } from "./Main";
 import { Section } from "./Section";
+import { useDrop } from "react-dnd";
 
 interface Props {
   todo: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
   modal: Todo | null;
   setModal: React.Dispatch<React.SetStateAction<Todo | null>>;
+  setUsers:React.Dispatch<React.SetStateAction<User[]>>;
+  users:User[],
+  userId:string|undefined;
+  userRole:string;
 }
 
 export const ListTask: React.FC<Props> = ({
@@ -15,6 +20,10 @@ export const ListTask: React.FC<Props> = ({
   setTodo,
   modal,
   setModal,
+  setUsers,
+  users,
+  userId,
+  userRole,
 }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inProgress, setInProgress] = useState<Todo[]>([]);
@@ -32,10 +41,16 @@ export const ListTask: React.FC<Props> = ({
     const fDone = todo.filter((task) => task.status === TodoStatusType.done);
     setDone(fDone);
   }, [todo]);
+
+  
   return (
     <div className="task-list">
       {statuses.map((status, index) => (
         <Section
+
+         userRole={userRole}
+         userId={userId}
+          users={users}
           modal={modal}
           setModal={setModal}
           key={index}
@@ -46,6 +61,7 @@ export const ListTask: React.FC<Props> = ({
           inProgress={inProgress}
           done={done}
         />
+        
       ))}
     </div>
   );

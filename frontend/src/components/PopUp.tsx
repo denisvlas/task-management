@@ -1,24 +1,42 @@
-import React, { useState } from "react";
-import { Todo } from "../models";
+import React, { useEffect, useState } from "react";
+import { ProjectType, Todo, User } from "../models";
 import { UserList } from "./UserList";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { updateTask } from "./Task";
+import axios from "axios";
 
 interface PopUpProps {
   modal: null | Todo;
   setModal: React.Dispatch<React.SetStateAction<Todo | null>>;
   todo: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
+  project: ProjectType | undefined;
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  users: User[];
+  userId: string | undefined;
+  userRole: string;
 }
 
-const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
+const PopUp: React.FC<PopUpProps> = ({
+  todo,
+  setTodo,
+  modal,
+  setModal,
+  project,
+  setUsers,
+  users,
+  userId,
+  userRole,
+}) => {
   const [inputDescription, setInputDescription] = useState<string>("");
   const [inputComment, setInputComment] = useState("");
 
-  function saveDescription(id: number) {
+  function saveDescription(id: number | undefined) {
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.description = inputDescription;
+        updateTask(item, item.id);
       }
       return item;
     });
@@ -28,10 +46,11 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
     setInputDescription("");
   }
 
-  function saveComment(id: number) {
+  function saveComment(id: number | undefined) {
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.comment = inputComment;
+        updateTask(item, item.id);
       }
       return item;
     });
@@ -40,11 +59,12 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
     setInputComment("");
   }
 
-  function saveEditDescription(id: number) {
+  function saveEditDescription(id: number | undefined) {
     setEditDescription(null);
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.description = editDescription;
+        updateTask(item, item.id);
       }
       return item;
     });
@@ -52,10 +72,11 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
     setTodo(newTodo);
     localStorage.setItem("tasks", JSON.stringify(todo));
   }
-  function saveEditComment(id: number) {
+  function saveEditComment(id: number | undefined) {
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.comment = editComment;
+        updateTask(item, item.id);
       }
       return item;
     });
@@ -64,10 +85,11 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
     localStorage.setItem("tasks", JSON.stringify(todo));
     setEditComment(null);
   }
-  function deleteDescription(id: number) {
+  function deleteDescription(id: number | undefined) {
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.description = undefined;
+        updateTask(item, id);
       }
       return item;
     });
@@ -76,10 +98,11 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
     localStorage.setItem("tasks", JSON.stringify(todo));
   }
 
-  function deleteComment(id: number) {
+  function deleteComment(id: number | undefined) {
     const newTodo = todo.map((item) => {
       if (item.id === id) {
         item.comment = undefined;
+        updateTask(item, id);
       }
       return item;
     });
@@ -107,6 +130,8 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
       [{ color: [] }],
     ],
   };
+
+  const attachedUser = users.find((user) => user.id === modal?.user_id);
 
   return (
     <>
@@ -137,7 +162,7 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
                       <i className="bi bi-chat-left-text-fill card-description-icon"></i>
                       Description
                     </span>
-                    {modal.description && (
+                    {modal.description && userRole==='admin'&& (
                       <div className="card-edit-delete-btn">
                         <i
                           onClick={() => setEditDescription(modal.description)}
@@ -184,7 +209,7 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
                         />
                       )}
                     </>
-                  ) : (
+                  ) : (userRole==='admin'?
                     <div className="input-description">
                       <ReactQuill
                         modules={modules}
@@ -199,7 +224,7 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
                       >
                         save
                       </button>
-                    </div>
+                    </div>:<i className="no-description-title">no description yet</i>
                   )}
                 </div>
 
@@ -273,69 +298,38 @@ const PopUp: React.FC<PopUpProps> = ({ todo, setTodo, modal, setModal }) => {
                     </div>
                   )}
                 </div>
-
-                {/* <div className='comment-section'>
-                      <hr className='hr-modal'/>
-                        <div className='comment-section-header'>
-                          <span className='comment-title'><i className="bi bi-chat card-comment-icon"></i>Comment</span>
-                          {modal.comment && 
-                          <div className='card-edit-delete-btn'>
-                          <i onClick={()=>setEditComment(modal.comment)} className="bi bi-pen edit-description"></i>
-                          <i  onClick={()=>deleteComment(modal.id)} className="bi bi-trash3 edit-description" ></i>
-                          </div>
-                          }
-                        </div>
-
-                        
-                        {modal.comment?
-                        <>
-                          {editComment!==null?
-                          <div className='input-comment'>
-                           <ReactQuill  className='description-editor' value={editComment} onChange={setEditComment}  />
-                          <div className='save-cancel-btn'>
-                            <button className='description-save-btn' onClick={()=>saveEditComment(modal.id)}>save</button>
-                            <button className='description-save-btn' onClick={()=>setEditComment(null)}>cancel</button>
-                          </div>
-                      </div>:
-                         <p className='description-text'>{modal.comment}</p>}
-                       
-                        </>:
-                        <div className='input-comment'>
-                           <ReactQuill  className='description-editor' value={inputComment} onChange={setInputComment}  />
-                          <button className='comment-save-btn'onClick={()=>saveComment(modal.id)}>save</button>
-                        </div>
-                        }
-                        
-
-
-                           </div>  */}
               </div>
               <div className="aside-popup">
-                {modal.user ? (
+                {modal.user_id ? (
                   <span className="user-attached">
-                    attached to {modal.user}
+                    <i className="bi bi-pin"></i>&nbsp;attached to&nbsp;<u>{attachedUser?.username}</u>
                   </span>
                 ) : (
                   <></>
                 )}
-                <div className="aside-user-section">
-                  <div
-                    onClick={() => setShowMembers(!showMembers)}
-                    className="popup-members"
-                  >
-                    <i className="bi bi-people"></i>Members
+                {userRole === "admin" && (
+                  <div className="aside-user-section">
+                    <div
+                      onClick={() => setShowMembers(!showMembers)}
+                      className="popup-members"
+                    >
+                      <i className="bi bi-people"></i>Members
+                    </div>
+                    {showMembers && project ? (
+                      <UserList
+                        users={users}
+                        setUsers={setUsers}
+                        project={project}
+                        setShowMembers={setShowMembers}
+                        modal={modal}
+                        todo={todo}
+                        setTodo={setTodo}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </div>
-                  {showMembers ? (
-                    <UserList
-                      setShowMembers={setShowMembers}
-                      modal={modal}
-                      todo={todo}
-                      setTodo={setTodo}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </div>
+                )}
               </div>
             </div>
           </div>

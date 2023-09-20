@@ -14,6 +14,9 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
+
+
+
   function addProject() {
     setShowInput(false);
     axios.post("http://localhost:3001/add-project", {
@@ -29,12 +32,12 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
     setUrl("");
   }
 
+
+
   return (
     <div className="projects-page">
       <h1>Projects</h1>
-      {projects.length > 0 ? (
-        <div>
-          <i
+      <i
             onClick={() => setShowInput(!showInput)}
             className="bi bi-plus-circle add-icon"
           ></i>
@@ -60,6 +63,9 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
           ) : (
             <></>
           )}
+      {projects.length > 0 ? (
+        <div>
+          
           <div className="projects-list-wrapper">
             {projects.length > 0 &&
               projects.map((project) => (
@@ -68,7 +74,7 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
           </div>
         </div>
       ) : (
-        <h1>server disconnected</h1>
+        <h1>no projects yet</h1>
       )}
     </div>
   );

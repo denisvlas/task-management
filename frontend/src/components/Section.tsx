@@ -1,21 +1,24 @@
 import React from 'react'
-import { Todo } from '../models'
+import { Todo, TodoStatusType, User } from '../models'
 import {  useDrop } from 'react-dnd'
 import { Header } from './Header';
-import { Task } from './Task';
+import { Task, updateTask } from './Task';
 
 interface Props{
   modal:Todo|null,
   setModal:React.Dispatch<React.SetStateAction<Todo|null>>,
-  status: string,
+  status: TodoStatusType,
   todo:Todo[],
   setTodo:React.Dispatch<React.SetStateAction<Todo[]>>,
   todos:Todo[],
   inProgress:Todo[],
-  done:Todo[] 
+  done:Todo[],
+  users:User[],
+  userId:string|undefined;
+  userRole:string
 }
 
-export const Section=({ modal,setModal,status,todo,todos,inProgress,done,setTodo }:Props)=>{
+export const Section=({ modal,setModal,status,todo,todos,inProgress,done,setTodo,users,userId,userRole }:Props)=>{
     
 
 
@@ -31,6 +34,9 @@ export const Section=({ modal,setModal,status,todo,todos,inProgress,done,setTodo
         setTodo((prev)=>{
          const mTasks=prev.map(t=>{
              if(t.id===id){
+            const newItem={...t,status:status}
+              
+              updateTask(newItem,t.id)
                  return {...t,status:status}
              }
              return t;
@@ -55,7 +61,7 @@ export const Section=({ modal,setModal,status,todo,todos,inProgress,done,setTodo
     return(
       <div ref={drop}  className={isOver?'onOver':'todo-task-wrapper'}>
            <Header status={status} count={tasksToMap.length} bg={bg}/>
-           {tasksToMap.map(item=><Task modal={modal} setModal={setModal} status={status} bg={bg} key={item.id} todo={todo} setTodo={setTodo} item={item}/>)}
+           {tasksToMap.map(item=><Task userRole={userRole} userId={userId} users={users} modal={modal} setModal={setModal} status={status} bg={bg} key={item.id} todo={todo} setTodo={setTodo} item={item}/>)}
            
       </div>
     )

@@ -13,7 +13,6 @@ interface props{
 const Login: React.FC<props> = ({projects}) => {
   const { projectName } = useParams();
   const p = projects.find(p => p.name === projectName);
-  console.log(p)
   const [project, setProject] = useState<ProjectType | undefined>(p);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -44,16 +43,20 @@ const Login: React.FC<props> = ({projects}) => {
       });
 
       if (response.data.length > 0) {
-        // Utilizatorul a fost autentificat cu succes
-        console.log('Utilizator autentificat:', response.data);
-        navigate(`/${projectName}/${username}`)
-        // Aici poți face orice dorești cu datele utilizatorului autentificat
+        try{
+          const res=await axios.get(`http://localhost:3001/get-user-id/${username}/${project?.projects_id}`)
+          const id=res.data.userId
+          navigate(`/tasks/${projectName}/${username}/${id}`)
+        }catch(err){
+          console.error(err)
+        }
       } else {
         setWarning('Wrong username or password');
       }
     } catch (error) {
       console.error(error);
     }
+
 
     setPassword('');
     setUsername('');

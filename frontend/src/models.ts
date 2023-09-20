@@ -4,12 +4,13 @@ export interface Todo{
     status:TodoStatus;
     description?:string;
     comment?:string;
-    user?:string;
+    user_id:number|null
 }
 
 export interface User{
     id:number;
     username:string;
+    role:string;
 }
 
 export interface ProjectType{

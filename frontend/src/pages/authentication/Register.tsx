@@ -38,10 +38,12 @@ const Register: React.FC<Props> = ({ projects }) => {
         setWarning(response.data.warning);
         return;
       }
+      const res=await axios.get(`http://localhost:3001/get-user-id/${username}/${project?.projects_id}`)
+      const id=res.data.userId
+      navigate(`/tasks/${projectName}/${username}/${id}`)
 
       setPassword('');
       setUsername('');
-      navigate(`/${project?.name}/${username}`);
     } catch (error) {
       console.error(error);
     }

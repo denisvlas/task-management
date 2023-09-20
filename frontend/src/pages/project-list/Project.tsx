@@ -12,6 +12,7 @@ const Project:React.FC<Props> = ({project}) => {
   return (
 <Link className='project-link' key={project.projects_id} to={`/login/${project.name}`}>
   <div className='project'>
+
     <img className='project-img' src={project.img} alt="" />
     {project.name}
   </div>
