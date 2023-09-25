@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/todo-app/static/css/main.5458ea69.css",
-    "main.js": "/todo-app/static/js/main.5bc5b3b8.js",
-    "static/media/bootstrap-icons.woff?": "/todo-app/static/media/bootstrap-icons.4753c5ba57962b4d7bf8.woff",
-    "static/media/bootstrap-icons.woff2?": "/todo-app/static/media/bootstrap-icons.6d63d0501e5ed7b79dab.woff2",
-    "index.html": "/todo-app/index.html",
-    "main.5458ea69.css.map": "/todo-app/static/css/main.5458ea69.css.map",
-    "main.5bc5b3b8.js.map": "/todo-app/static/js/main.5bc5b3b8.js.map"
+    "main.css": "/task-management/static/css/main.676cbc06.css",
+    "main.js": "/task-management/static/js/main.b7fdb602.js",
+    "static/media/bootstrap-icons.woff?": "/task-management/static/media/bootstrap-icons.4753c5ba57962b4d7bf8.woff",
+    "static/media/bootstrap-icons.woff2?": "/task-management/static/media/bootstrap-icons.6d63d0501e5ed7b79dab.woff2",
+    "static/media/free-resize-1438243-1216204.webp": "/task-management/static/media/free-resize-1438243-1216204.a8b68f207c208b38264a.webp",
+    "index.html": "/task-management/index.html",
+    "main.676cbc06.css.map": "/task-management/static/css/main.676cbc06.css.map",
+    "main.b7fdb602.js.map": "/task-management/static/js/main.b7fdb602.js.map"
   },
   "entrypoints": [
-    "static/css/main.5458ea69.css",
-    "static/js/main.5bc5b3b8.js"
+    "static/css/main.676cbc06.css",
+    "static/js/main.b7fdb602.js"
   ]
 }
