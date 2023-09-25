@@ -142,7 +142,7 @@ app.put("/update-task/:taskId", (req, res) => {
 
   db.query(
     sqlUpdateTask,
-    [title, status, description, comment,  userId, taskId],
+    [title, status, description, comment, userId, taskId],
     (err, result) => {
       if (err) {
         res.send({ message: "Error updating task." });
@@ -192,9 +192,8 @@ app.post("/add-project", (req, res) => {
 app.post("/reg", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const projectId = req.body.projectId; // ID-ul proiectului specific
+  const projectId = req.body.projectId;
 
-  // Verifică dacă există deja un utilizator cu același nume de utilizator în același proiect
   db.query(
     "SELECT * FROM users WHERE username = ? AND project_id = ?",
     [username, projectId],
@@ -209,7 +208,6 @@ app.post("/reg", (req, res) => {
         });
       }
 
-      // Dacă nu există, continuă cu înregistrarea în proiectul specific
       const sqlRegUser =
         "INSERT INTO users (username, password, project_id) VALUES (?, ?, ?)";
 

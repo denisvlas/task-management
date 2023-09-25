@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
-import { Todo, User } from "../models";
+import { Todo, TodoStatusType, User } from "../models";
 import axios from "axios";
 
 interface Props {
@@ -28,7 +28,6 @@ export const Task = ({
   userRole,
 }: Props) => {
   async function deleteTodo(id: number) {
-    console.log(id);
     await axios.delete(`http://localhost:3001/delete-task/${id}`);
     setShowMore(false);
     let newTodo = [...todo].filter((item) => item.id !== id);
@@ -75,11 +74,13 @@ export const Task = ({
       ref={drag}
       onMouseLeave={() => setShowMore(false)}
       className={`${
-        status === "to do"
-          ? "not-done"
+        status === "to-do"
+          ? "to-do"
           : status === "progress"
           ? "progress"
-          : "done"
+          : status === "done"
+          ? "done"
+          : "new"
       } ${isDragging ? "dragging" : ""} ${
         attachedUser &&
         userId &&
@@ -127,10 +128,12 @@ export const Task = ({
                 <></>
               )}
             </div>
-            {userRole==='admin'&&<i
-              onClick={() => setShowMore(!showMore)}
-              className="bi bi-three-dots-vertical show-more-btn"
-            ></i>}
+            {userRole === "admin" && (
+              <i
+                onClick={() => setShowMore(!showMore)}
+                className="bi bi-three-dots-vertical show-more-btn"
+              ></i>
+            )}
             {showMore && (
               <div
                 onMouseEnter={() => setShowMore(true)}
@@ -160,7 +163,6 @@ export async function updateTask(updatedData: Todo, taskId: number) {
         userId: updatedData.user_id,
       }
     );
-    console.log(updatedData.user_id);
   } catch (error) {
     console.error(error);
   }

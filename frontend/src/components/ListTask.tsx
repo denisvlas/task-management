@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Todo, TodoStatusType, User } from "../models";
-import { statuses } from "./Main";
-import { Section } from "./Section";
+import { List, Section } from "./Section";
 import { useDrop } from "react-dnd";
 
 interface Props {
@@ -9,10 +8,10 @@ interface Props {
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
   modal: Todo | null;
   setModal: React.Dispatch<React.SetStateAction<Todo | null>>;
-  setUsers:React.Dispatch<React.SetStateAction<User[]>>;
-  users:User[],
-  userId:string|undefined;
-  userRole:string;
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  users: User[];
+  userId: string | undefined;
+  userRole: string;
 }
 
 export const ListTask: React.FC<Props> = ({
@@ -29,6 +28,13 @@ export const ListTask: React.FC<Props> = ({
   const [inProgress, setInProgress] = useState<Todo[]>([]);
   const [done, setDone] = useState<Todo[]>([]);
 
+  const [statuses, setStatuses] = useState([
+    TodoStatusType.incompleted,
+    TodoStatusType.progress,
+    TodoStatusType.done,
+  ]);
+  const [lists, setLists] = useState(["sdads", "dsadsad", "dfsfdsf"]);
+
   useEffect(() => {
     const fTodos = todo.filter(
       (task) => task.status === TodoStatusType.incompleted
@@ -42,27 +48,27 @@ export const ListTask: React.FC<Props> = ({
     setDone(fDone);
   }, [todo]);
 
-  
   return (
     <div className="task-list">
-      {statuses.map((status, index) => (
-        <Section
-
-         userRole={userRole}
-         userId={userId}
-          users={users}
-          modal={modal}
-          setModal={setModal}
-          key={index}
-          status={status}
-          todo={todo}
-          setTodo={setTodo}
-          todos={todos}
-          inProgress={inProgress}
-          done={done}
-        />
-        
-      ))}
+      <div className="statuses">
+        {statuses.map((status, index) => (
+          <Section
+            userRole={userRole}
+            userId={userId}
+            users={users}
+            modal={modal}
+            setModal={setModal}
+            key={index}
+            index={index}
+            status={status}
+            todo={todo}
+            setTodo={setTodo}
+            todos={todos}
+            inProgress={inProgress}
+            done={done}
+          />
+        ))}
+      </div>
     </div>
   );
 };

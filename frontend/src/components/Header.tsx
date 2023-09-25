@@ -12,22 +12,17 @@ export const Header = ({ status, count, bg }: Props) => {
         status === TodoStatusType.done
           ? "done"
           : status === TodoStatusType.incompleted
-          ? "not-done"
-          : "progress"
-      }`}
-      style={{
-        borderRadius: 7,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: 50,
-        paddingLeft: 14,
-        color: "black",
-        marginBottom: 20,
-      }}
+          ? "to-do"
+          : status === TodoStatusType.progress
+          ? "progress"
+          : "new"
+      } header-list`}
     >
-      {status}
-      <div style={{ marginLeft: 20 }}>{count}</div>
+      <div className="status">{status}</div>
+
+      <div className="list-count" style={{ marginLeft: 20 }}>
+        {count}
+      </div>
     </div>
   );
 };

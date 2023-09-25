@@ -15,15 +15,13 @@ function App() {
 
   useEffect(()=>{
     axios.get('http://localhost:3001/projects').then(res=>{
-         
      setProjects(res.data)
-        
     }).catch(e=>console.log(e))
   
-
 },[])
 
-  return (
+
+return (
 <BrowserRouter>
   <Routes>
   <Route path="/not-found" element={<NotFound />} />

@@ -1,7 +1,8 @@
 export interface Todo{
     id:number;
     title:string;
-    status:TodoStatus;
+    status:string;
+    list?:string;
     description?:string;
     comment?:string;
     user_id:number|null
@@ -21,7 +22,7 @@ export interface ProjectType{
 
 export enum TodoStatusType{
     
-    incompleted='to do',
+    incompleted='to-do',
     done='done',
     progress='progress',
 

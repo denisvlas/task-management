@@ -18,12 +18,6 @@ import {
 import NotFound from "../pages/NotFound";
 import axios from "axios";
 
-export const statuses = [
-  TodoStatusType.incompleted,
-  TodoStatusType.progress,
-  TodoStatusType.done,
-];
-
 function Main({ projects }: { projects: ProjectType[] }) {
   const [todo, setTodo] = useState<Todo[]>([]);
   const [modal, setModal] = useState<Todo | null>(null);
@@ -67,7 +61,6 @@ function Main({ projects }: { projects: ProjectType[] }) {
       setUserRole(user?.role || "nu s-a gasit user role");
     }
   }, [userId, users]);
-  console.log(userRole);
 
   async function fetchUsers() {
     try {
@@ -86,10 +79,30 @@ function Main({ projects }: { projects: ProjectType[] }) {
     navigate("/projects");
   }
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  if (!users.find((user) => user.username === username)) {
+    return <NotFound />;
+  }
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="App">
-        <header className="app-header">
+        <header className={`${scrolled && "header-scroll"} app-header`}>
           <div className="project-info">
             <img className="main-img" src={project?.img} alt="" />
             <h1>{project?.name}</h1>
@@ -134,7 +147,9 @@ function Main({ projects }: { projects: ProjectType[] }) {
             />
           )}
 
-          {userRole==='admin'&&<Footer project={project} todo={todo} setTodo={setTodo} />}
+          {userRole === "admin" && (
+            <Footer project={project} todo={todo} setTodo={setTodo} />
+          )}
           <ProgressBar todo={todo} setTodo={setTodo} />
           <ListTask
             userRole={userRole}

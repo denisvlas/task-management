@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Project from "./Project";
 import "./project-list.css";
 import axios from "axios";
@@ -14,9 +14,6 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-
-
-
   function addProject() {
     setShowInput(false);
     axios.post("http://localhost:3001/add-project", {
@@ -27,45 +24,42 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
       ...projects,
       { projects_id: projects.length + 1, name: name, img: url },
     ]);
-    console.log(projects);
     setName("");
     setUrl("");
   }
 
-
-
   return (
     <div className="projects-page">
-      <h1>Projects</h1>
+      <h1 className="title">PROJECTS</h1>
+
       <i
-            onClick={() => setShowInput(!showInput)}
-            className="bi bi-plus-circle add-icon"
-          ></i>
-          {showInput ? (
-            <div className="modal-form">
-              <form>
-                <h3>add a project</h3>
-                <label htmlFor="Project name">Project name</label>
-                <input
-                  onChange={(e) => setName(e.target.value)}
-                  type="text"
-                  placeholder="Write the name of project"
-                />
-                <label htmlFor="Image url">Project url</label>
-                <input
-                  onChange={(e) => setUrl(e.target.value)}
-                  type="text"
-                  placeholder="Add the link for image"
-                />
-              </form>
-              <button onClick={() => addProject()}>add</button>
-            </div>
-          ) : (
-            <></>
-          )}
+        onClick={() => setShowInput(!showInput)}
+        className="bi bi-plus-circle add-icon"
+      ></i>
+      {showInput ? (
+        <div className="modal-form">
+          <form>
+            <h3>add a project</h3>
+            <label htmlFor="Project name">Project name</label>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              placeholder="Write the name of project"
+            />
+            <label htmlFor="Image url">Project url</label>
+            <input
+              onChange={(e) => setUrl(e.target.value)}
+              type="text"
+              placeholder="Add the link for image"
+            />
+          </form>
+          <button onClick={() => addProject()}>add</button>
+        </div>
+      ) : (
+        <></>
+      )}
       {projects.length > 0 ? (
         <div>
-          
           <div className="projects-list-wrapper">
             {projects.length > 0 &&
               projects.map((project) => (
@@ -74,7 +68,7 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
           </div>
         </div>
       ) : (
-        <h1>no projects yet</h1>
+        <h1 className="no-projects">no projects yet</h1>
       )}
     </div>
   );

@@ -5,13 +5,15 @@ import axios from "axios";
 interface Props {
   todo: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
-  project:ProjectType|undefined;
+  project: ProjectType | undefined;
 }
 
-const Footer: React.FC<Props> = ({ todo, setTodo,project, }) => {
+const Footer: React.FC<Props> = ({ todo, setTodo, project }) => {
   async function clear() {
     try {
-      await axios.delete(`http://localhost:3001/delete-all/${project?.projects_id}`);
+      await axios.delete(
+        `http://localhost:3001/delete-all/${project?.projects_id}`
+      );
       setTodo([]);
       localStorage.setItem("tasks", JSON.stringify([]));
     } catch (err) {
@@ -67,20 +69,6 @@ const Footer: React.FC<Props> = ({ todo, setTodo,project, }) => {
       ) : (
         <div></div>
       )}
-      {/* {completed>0&&<button className='delete-completed' onClick={()=>deleteSelected()}>delete completed</button>
-    }   
-      {todo.length>0?<div className='footer-btn'>
-            <button className='show-incomplete' onClick={()=>showIncompleteTasks()}>
-              Incomplete Tasks
-            </button>
-            <button className='show-complete' onClick={()=>showCompleteTasks()}>
-              Complete Tasks
-            </button>
-            <button className='show-all-tasks' onClick={()=>showAll()}>
-             All Tasks
-            </button>
-        </div>: ''}
-     */}
     </div>
   );
 };

@@ -137,7 +137,7 @@ const PopUp: React.FC<PopUpProps> = ({
     <>
       {modal && (
         <div className="popup-background">
-          <div className="pop-container">
+          <div className={`${modal.status} pop-container`}>
             <div className="pop-header">
               <div className="card-details">
                 <span className="card-title">
@@ -162,7 +162,7 @@ const PopUp: React.FC<PopUpProps> = ({
                       <i className="bi bi-chat-left-text-fill card-description-icon"></i>
                       Description
                     </span>
-                    {modal.description && userRole==='admin'&& (
+                    {modal.description && userRole === "admin" && (
                       <div className="card-edit-delete-btn">
                         <i
                           onClick={() => setEditDescription(modal.description)}
@@ -209,7 +209,7 @@ const PopUp: React.FC<PopUpProps> = ({
                         />
                       )}
                     </>
-                  ) : (userRole==='admin'?
+                  ) : userRole === "admin" ? (
                     <div className="input-description">
                       <ReactQuill
                         modules={modules}
@@ -224,7 +224,9 @@ const PopUp: React.FC<PopUpProps> = ({
                       >
                         save
                       </button>
-                    </div>:<i className="no-description-title">no description yet</i>
+                    </div>
+                  ) : (
+                    <i className="no-description-title">no description yet</i>
                   )}
                 </div>
 
@@ -235,7 +237,7 @@ const PopUp: React.FC<PopUpProps> = ({
                       <i className="bi bi-chat-left-text-fill card-description-icon"></i>
                       Comment
                     </span>
-                    {modal.comment && (
+                    {modal.comment && userRole === "admin" && (
                       <div className="card-edit-delete-btn">
                         <i
                           onClick={() => setEditComment(modal.comment)}
@@ -302,7 +304,8 @@ const PopUp: React.FC<PopUpProps> = ({
               <div className="aside-popup">
                 {modal.user_id ? (
                   <span className="user-attached">
-                    <i className="bi bi-pin"></i>&nbsp;attached to&nbsp;<u>{attachedUser?.username}</u>
+                    <i className="bi bi-pin"></i>&nbsp;attached to&nbsp;
+                    <u>{attachedUser?.username}</u>
                   </span>
                 ) : (
                   <></>

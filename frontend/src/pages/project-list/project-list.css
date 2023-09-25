@@ -1,101 +1,165 @@
-
-
-
-.projects-page{
-    position: relative;
-    padding: 10% 0 5% 0;
-    margin: 0 auto;
-    width: 1130px;
-    height: 100%;
-    color: white;
-
-
+body {
+  background-color: #fefbe9;
 }
 
-
-.projects-list-wrapper{
-    width: 1130px;
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin: 200px auto;
-    padding: 20px;
+.projects-page {
+  position: relative;
+  padding: 0 0 5% 0;
+  margin: 0 auto;
+  width: 1130px;
+  height: 100%;
+  color: white;
 }
 
-.project-link{
-    text-decoration: none;
-    color: white;
-    width: 250px;
-    height: 170px;
-}
-.project:hover{
-    filter: brightness(130%);
-    scale: 1.02;
-}
-.project{
-    width: 100%;
-    height: 100%;
-    background: #5b5959;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
+.projects-list-wrapper {
+  width: 1130px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
-.project-img{
-    width:80px;
-    height: 80px;
-    border-radius: 50%;
+.project-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 343px;
+  height: 220px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.588);
+  border-radius: 10px;
+  background: #e1eedd;
+  padding: 15px;
+  position: relative;
+}
+.project:hover {
+  filter: brightness(130%);
+  scale: 1.02;
+}
+.project-header {
+  width: 70%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  border-radius: 50%;
+  gap: 10px;
+}
+.tasks-length,
+.members-length {
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 17px;
 }
 
-h1{ 
-    text-align: center;
-    font-size: 60px;
+.project-img {
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+}
+.join-project {
+  align-self: flex-end;
+  position: absolute;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-project a:hover {
+  background: #f6c453;
 }
 
-.add-icon{
-    font-size: 50px;
-    position: absolute;
-    top: 350px;
-    right: 20px;
+.join-project a {
+  transition: all 0.2s;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  padding: 7px 20px;
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  background: #183a1d;
+  border-radius: 5px;
 }
 
-.modal-form{
-    color: white;
-    position: absolute;
-    top: 240px;
-    right: 70px;
-    background: rgba(0, 0, 0, 0.69);
-    display: flex;
-    width: 370px;
-    padding: 20px;
-    flex-direction: column;
-    gap: 20px;
-    border-radius: 10px;
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #183a1d;
+  width: 97%;
+  margin: 20px auto 150px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 60px;
+  background-color: #e1eedd;
 }
 
-.modal-form input{
-    margin: 10px 0;
-
+.auth h1 {
+  text-align: center;
+  font-size: 60px;
+}
+.no-projects {
+  color: rgb(90, 90, 90);
+  font-size: 60px;
+  text-align: center;
 }
 
-.modal-form h3{
-    text-align: center;
-    margin-bottom: 30px;
+.add-icon {
+  font-size: 50px;
+  position: absolute;
+  top: 180px;
+  right: 20px;
+  color: #183a1d;
+  transition: all 0.2s ease;
+}
+.add-icon:hover {
+  color: #f0a04b;
+  cursor: pointer;
+  scale: 1.03;
+}
+
+.modal-form {
+  color: white;
+  position: absolute;
+  top: 240px;
+  right: 70px;
+  background: rgb(42, 39, 39);
+  display: flex;
+  width: 370px;
+  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 100;
+  border-radius: 10px;
+}
+
+.modal-form input {
+  margin: 10px 0;
+  padding: 5px;
+}
+
+.modal-form h3 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .modal-form button {
-    width: 70px;
-    align-self: flex-end;
+  width: 100%;
+  font-size: 25px;
+  background: #7f7e7e;
+  color: white;
+  border: none;
+  align-self: flex-end;
 }
 
-.project-img-reg{
-    width: 80px;
-    margin: 15px 0;
-    border-radius: 50%;
-}
-
-.reg-title{
-    font-size: 50px;
+.project-img-reg {
+  width: 80px;
+  margin: 15px 0;
+  border-radius: 15px;
 }
