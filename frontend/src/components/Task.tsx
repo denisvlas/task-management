@@ -79,9 +79,9 @@ export const Task = ({
           : status === "progress"
           ? "progress"
           : status === "done"
-          ? "done"
-          : "new"
-      } ${isDragging ? "dragging" : ""} ${
+          && "done"
+          
+      } ${isDragging&& "dragging" } ${
         attachedUser &&
         userId &&
         attachedUser.id === parseInt(userId) &&

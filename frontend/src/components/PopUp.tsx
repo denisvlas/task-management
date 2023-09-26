@@ -4,7 +4,6 @@ import { UserList } from "./UserList";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { updateTask } from "./Task";
-import axios from "axios";
 
 interface PopUpProps {
   modal: null | Todo;

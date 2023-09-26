@@ -26,8 +26,17 @@ const TodoForm: React.FC<Props> = ({ todo, setTodo, project, userId }) => {
     }
   };
 
+ const [warning,setWarning]=useState('')
+
+
+
   const handleAddTask = async () => {
+    
+    if(input.length<1){
+      return setWarning('Write something')
+    }
     try {
+     
       await axios.post("http://localhost:3001/add-task", {
         title: input,
         status: TodoStatusType.incompleted,
@@ -62,8 +71,9 @@ const TodoForm: React.FC<Props> = ({ todo, setTodo, project, userId }) => {
   return (
     <div className="add-task-section">
       <input
+        onClick={()=>setWarning('')}
         onKeyPress={handleKeyPress}
-        placeholder="Add a task ..."
+        placeholder={`${warning?warning:'Add a task ...'}`}
         type="text"
         className="input-task"
         value={input}
