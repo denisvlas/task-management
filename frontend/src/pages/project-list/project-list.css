@@ -129,7 +129,7 @@ body {
   position: absolute;
   top: 240px;
   right: 70px;
-  background: rgb(42, 39, 39);
+  background: #183a1d;
   display: flex;
   width: 370px;
   padding: 20px;
@@ -152,10 +152,11 @@ body {
 .modal-form button {
   width: 100%;
   font-size: 25px;
-  background: #7f7e7e;
+  background: #f0a04b;;
   color: white;
   border: none;
-  align-self: flex-end;
+  border-radius: 5px;
+
 }
 
 .project-img-reg {

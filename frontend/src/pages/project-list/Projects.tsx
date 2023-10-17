@@ -39,14 +39,14 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
       {showInput ? (
         <div className="modal-form">
           <form>
-            <h3>add a project</h3>
+            <h3>Add a project</h3>
             <label htmlFor="Project name">Project name</label>
             <input
               onChange={(e) => setName(e.target.value)}
               type="text"
               placeholder="Write the name of project"
             />
-            <label htmlFor="Image url">Project url</label>
+            <label htmlFor="Image url">Project logo url</label>
             <input
               onChange={(e) => setUrl(e.target.value)}
               type="text"

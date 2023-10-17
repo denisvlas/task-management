@@ -27,7 +27,6 @@ app.post("/login", (req, res) => {
         res.send({ message: "Error" });
         return;
       }
-
       if (result.length > 0) {
         res.send(result);
       } else {

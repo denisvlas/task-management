@@ -9,8 +9,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <DndProvider backend={HTML5Backend}>
 <App/>
-</DndProvider>
 );
 

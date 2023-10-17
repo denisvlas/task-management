@@ -8,14 +8,14 @@ interface props {
 }
 
 const Login: React.FC<props> = ({ projects }) => {
-  const { projectName } = useParams();
-  const p = projects.find((p) => p.name === projectName);
-  const [project, setProject] = useState<ProjectType>();
+ 
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [warning, setWarning] = useState("");
   const navigate = useNavigate();
-
+  const { projectName } = useParams();
+  const p = projects.find((p) => p.name === projectName);
+  const [project, setProject] = useState<ProjectType>();
   useEffect(() => {
     p && setProject(p);
   }, [p]);

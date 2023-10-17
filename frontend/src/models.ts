@@ -1,8 +1,7 @@
 export interface Todo{
     id:number;
     title:string;
-    status:string;
-    list?:string;
+    status:TodoStatusType;
     description?:string;
     comment?:string;
     user_id:number|null

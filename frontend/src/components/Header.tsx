@@ -3,9 +3,8 @@ import { TodoStatusType } from "../models";
 interface Props {
   status: string;
   count: number;
-  bg: string;
 }
-export const Header = ({ status, count, bg }: Props) => {
+export const Header = ({ status, count}: Props) => {
   return (
     <div
       className={`${

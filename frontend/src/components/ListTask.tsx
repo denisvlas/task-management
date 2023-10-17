@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Todo, TodoStatusType, User } from "../models";
-import { List, Section } from "./Section";
+import { Section } from "./Section";
 import { useDrop } from "react-dnd";
 
 interface Props {
@@ -28,12 +28,11 @@ export const ListTask: React.FC<Props> = ({
   const [inProgress, setInProgress] = useState<Todo[]>([]);
   const [done, setDone] = useState<Todo[]>([]);
 
-  const [statuses, setStatuses] = useState([
+  const [statuses, setStatuses] = useState<TodoStatusType[]>([
     TodoStatusType.incompleted,
     TodoStatusType.progress,
     TodoStatusType.done,
   ]);
-  const [lists, setLists] = useState(["sdads", "dsadsad", "dfsfdsf"]);
 
   useEffect(() => {
     const fTodos = todo.filter(

@@ -37,23 +37,6 @@ const Footer: React.FC<Props> = ({ todo, setTodo, project }) => {
     setTodo(todos);
   }
 
-  const [originalTodo, setOriginalTodo] = useState(todo);
-
-  function showIncompleteTasks() {
-    const incomplete = todo.filter((item) => {
-      if (!item.status) return item;
-    });
-    setTodo(incomplete);
-  }
-
-  function showCompleteTasks() {
-    const complete = todo.filter((item) => item.status);
-    setTodo(complete);
-  }
-
-  function showAll() {
-    setTodo(originalTodo);
-  }
 
   return (
     <div>

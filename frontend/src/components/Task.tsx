@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
 import { Todo, TodoStatusType, User } from "../models";
 import axios from "axios";
+import { updateTask } from "./Main";
 
 interface Props {
   modal: Todo | null;
   setModal: React.Dispatch<React.SetStateAction<Todo | null>>;
   status: string;
-  bg: string;
   item: Todo;
   todo: Todo[];
   setTodo: React.Dispatch<React.SetStateAction<Todo[]>>;
@@ -28,14 +28,17 @@ export const Task = ({
   userRole,
 }: Props) => {
   async function deleteTodo(id: number) {
-    await axios.delete(`http://localhost:3001/delete-task/${id}`);
-    setShowMore(false);
-    let newTodo = [...todo].filter((item) => item.id !== id);
-    setTodo(newTodo);
+    try {
+      await axios.delete(`http://localhost:3001/delete-task/${id}`);
+      setShowMore(false);
+      let newTodo = [...todo].filter((item) => item.id !== id);
+      setTodo(newTodo);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   const [edit, setEdit] = useState<null | number>(null);
-
   const [inputValue, setInputValue] = useState("");
 
   function saveValue(id: number) {
@@ -69,23 +72,35 @@ export const Task = ({
 
   const attachedUser = users.find((user) => user.id === item.user_id);
 
+  function popUp(item: Todo) {
+    (attachedUser &&
+      userId &&
+      attachedUser.id === parseInt(userId) &&
+      setModal(item)) ||
+      (userRole === "admin" && setModal(item));
+  }
+
   return (
     <div
-      ref={drag}
+      ref={
+        (attachedUser &&
+          userId &&
+          attachedUser.id === parseInt(userId) &&
+          drag) ||
+        (userRole === "admin" && drag) ||
+        null
+      }
       onMouseLeave={() => setShowMore(false)}
       className={`${
         status === "to-do"
           ? "to-do"
           : status === "progress"
           ? "progress"
-          : status === "done"
-          && "done"
-          
-      } ${isDragging&& "dragging" } ${
-        attachedUser &&
-        userId &&
-        attachedUser.id === parseInt(userId) &&
-        "my-task"
+          : status === "done" && "done"
+      } ${isDragging && "dragging"} ${
+        attachedUser && userId && attachedUser.id === parseInt(userId)
+          ? "my-task"
+          : userRole === "admin" && "grab"
       } todo-item `}
     >
       <div className="todo-task">
@@ -112,7 +127,7 @@ export const Task = ({
           </div>
         ) : (
           <div className="todo-task">
-            <div onClick={() => setModal(item)} className="todo-task-click">
+            <div onClick={() => popUp(item)} className="todo-task-click">
               <p className="item-title">{item.title}</p>
               {attachedUser && userId ? (
                 <p
@@ -150,20 +165,3 @@ export const Task = ({
     </div>
   );
 };
-
-export async function updateTask(updatedData: Todo, taskId: number) {
-  try {
-    const response = await axios.put(
-      `http://localhost:3001/update-task/${taskId}`,
-      {
-        title: updatedData.title,
-        status: updatedData.status,
-        description: updatedData.description,
-        comment: updatedData.comment,
-        userId: updatedData.user_id,
-      }
-    );
-  } catch (error) {
-    console.error(error);
-  }
-}

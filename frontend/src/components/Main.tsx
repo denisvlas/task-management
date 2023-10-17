@@ -39,20 +39,6 @@ function Main({ projects }: { projects: ProjectType[] }) {
     }
   }, [project?.projects_id]);
 
-  async function fetchTasks() {
-    try {
-      if (project != undefined) {
-        const res = await axios.get(
-          `http://localhost:3001/tasks/${project?.projects_id}`
-        );
-
-        setTodo(res.data);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   const [users, setUsers] = useState<User[]>([]);
   const [userRole, setUserRole] = useState<string>("");
   useEffect(() => {
@@ -72,7 +58,19 @@ function Main({ projects }: { projects: ProjectType[] }) {
       console.log(e);
     }
   }
+  async function fetchTasks() {
+    try {
+      if (project != undefined) {
+        const res = await axios.get(
+          `http://localhost:3001/tasks/${project?.projects_id}`
+        );
 
+        setTodo(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   const [showAside, setShowAside] = useState(false);
   const navigate = useNavigate();
   function exit() {
@@ -168,3 +166,20 @@ function Main({ projects }: { projects: ProjectType[] }) {
 }
 
 export default Main;
+
+export async function updateTask(updatedData: Todo, taskId: number) {
+  try {
+    const response = await axios.put(
+      `http://localhost:3001/update-task/${taskId}`,
+      {
+        title: updatedData.title,
+        status: updatedData.status,
+        description: updatedData.description,
+        comment: updatedData.comment,
+        userId: updatedData.user_id,
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}

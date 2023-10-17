@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ProjectType, Todo, User } from "../models";
-import { updateTask } from "./Task";
+import { updateTask } from "./Main";
 
 interface Props {
   project: ProjectType;

@@ -55,7 +55,6 @@ const TodoForm: React.FC<Props> = ({ todo, setTodo, project, userId }) => {
           user_id: null,
         },
       ];
-      localStorage.setItem("tasks", JSON.stringify(newTodo));
       setTodo(newTodo);
       setInput("");
     } catch (error) {
