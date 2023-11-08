@@ -170,7 +170,7 @@ export default Main;
 export async function updateTask(updatedData: Todo, taskId: number) {
   try {
     const response = await axios.put(
-      `http://localhost:3001/update-task/${taskId}`,
+      `https://task-management-heroku-0dfab14e9bc8.herokuapp.com/update-task/${taskId}`,
       {
         title: updatedData.title,
         status: updatedData.status,
