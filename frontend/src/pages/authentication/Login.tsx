@@ -23,7 +23,7 @@ const Login: React.FC<props> = ({ projects }) => {
   async function loginUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/login", {
+      const response = await axios.post("https://task-management-heroku-0dfab14e9bc8.herokuapp.com/login", {
         username: username,
         password: password,
         projectId: project?.projects_id,
@@ -32,7 +32,7 @@ const Login: React.FC<props> = ({ projects }) => {
       if (response.data.length > 0) {
         try {
           const res = await axios.get(
-            `http://localhost:3001/get-user-id/${username}/${project?.projects_id}`
+            `https://task-management-heroku-0dfab14e9bc8.herokuapp.com/${username}/${project?.projects_id}`
           );
           const id = res.data.userId;
           navigate(`/tasks/${projectName}/${username}/${id}`);

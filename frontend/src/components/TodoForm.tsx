@@ -18,7 +18,7 @@ const TodoForm: React.FC<Props> = ({ todo, setTodo, project, userId }) => {
 
   const getLastId = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/get-last-id");
+      const res = await axios.get("https://task-management-heroku-0dfab14e9bc8.herokuapp.com/get-last-id");
       const lastId = res.data[0]["MAX(id)"];
       setLastId(lastId);
     } catch (err) {
@@ -37,7 +37,7 @@ const TodoForm: React.FC<Props> = ({ todo, setTodo, project, userId }) => {
     }
     try {
      
-      await axios.post("http://localhost:3001/add-task", {
+      await axios.post("https://task-management-heroku-0dfab14e9bc8.herokuapp.com/add-task", {
         title: input,
         status: TodoStatusType.incompleted,
         description: undefined,

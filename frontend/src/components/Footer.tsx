@@ -12,7 +12,7 @@ const Footer: React.FC<Props> = ({ todo, setTodo, project }) => {
   async function clear() {
     try {
       await axios.delete(
-        `http://localhost:3001/delete-all/${project?.projects_id}`
+        `https://task-management-heroku-0dfab14e9bc8.herokuapp.com/delete-all/${project?.projects_id}`
       );
       setTodo([]);
       localStorage.setItem("tasks", JSON.stringify([]));

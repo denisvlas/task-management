@@ -15,7 +15,7 @@ function App() {
   const [projects,setProjects]=useState<ProjectType[]>([])
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/projects').then(res=>{
+    axios.get('https://task-management-heroku-0dfab14e9bc8.herokuapp.com/projects').then(res=>{
      setProjects(res.data)
     }).catch(e=>console.log(e))
   
