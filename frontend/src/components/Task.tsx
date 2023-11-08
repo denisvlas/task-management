@@ -29,7 +29,7 @@ export const Task = ({
 }: Props) => {
   async function deleteTodo(id: number) {
     try {
-      await axios.delete(`http://localhost:3001/delete-task/${id}`);
+      await axios.delete(`https://task-management-heroku-0dfab14e9bc8.herokuapp.com/delete-task/${id}`);
       setShowMore(false);
       let newTodo = [...todo].filter((item) => item.id !== id);
       setTodo(newTodo);

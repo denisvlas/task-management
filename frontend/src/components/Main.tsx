@@ -51,7 +51,7 @@ function Main({ projects }: { projects: ProjectType[] }) {
   async function fetchUsers() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/users/${project?.projects_id}`
+        `https://task-management-heroku-0dfab14e9bc8.herokuapp.com/users/${project?.projects_id}`
       );
       setUsers(res.data);
     } catch (e) {
@@ -62,7 +62,7 @@ function Main({ projects }: { projects: ProjectType[] }) {
     try {
       if (project != undefined) {
         const res = await axios.get(
-          `http://localhost:3001/tasks/${project?.projects_id}`
+          `https://task-management-heroku-0dfab14e9bc8.herokuapp.com/tasks/${project?.projects_id}`
         );
 
         setTodo(res.data);

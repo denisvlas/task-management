@@ -28,7 +28,7 @@ const Register: React.FC<Props> = ({ projects }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/reg", {
+      const response = await axios.post("https://task-management-heroku-0dfab14e9bc8.herokuapp.com/reg", {
         username: username,
         password: password,
         projectId: project?.projects_id,
@@ -39,7 +39,8 @@ const Register: React.FC<Props> = ({ projects }) => {
         return;
       }
       const res = await axios.get(
-        `http://localhost:3001/get-user-id/${username}/${project?.projects_id}`
+        `https://task-management-heroku-0dfab14e9bc8.herokuapp.com
+        /get-user-id/${username}/${project?.projects_id}`
       );
       const id = res.data.userId;
       navigate(`/tasks/${projectName}/${username}/${id}`);

@@ -8,10 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "admin",
-  database: "task-management",
+  user: "o7zwh9g28ddbw5ox",
+  host: "oliadkuxrl9xdugh.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+  password: "iisbbp8kdw0nm8mn",
+  database: "np0exc6yqwl0rpdd",
 });
 
 app.post("/login", (req, res) => {
@@ -228,6 +228,7 @@ app.get("/current-user/:username", (req, res) => {
   res.json({ username });
 });
 
-app.listen(3001, () => {
+const PORT=3001
+app.listen(process.env.PORT||PORT, () => {
   console.log("running server");
 });

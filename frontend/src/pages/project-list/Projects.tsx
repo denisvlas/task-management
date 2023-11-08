@@ -16,7 +16,7 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
 
   function addProject() {
     setShowInput(false);
-    axios.post("http://localhost:3001/add-project", {
+    axios.post("https://task-management-heroku-0dfab14e9bc8.herokuapp.com/add-project", {
       name: name,
       url: url,
     });
