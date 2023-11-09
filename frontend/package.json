@@ -1,6 +1,6 @@
 {
   "homepage": "https://denisvlas.github.io/projects",
-  "name": "task-management",
+  "name": "tasker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
