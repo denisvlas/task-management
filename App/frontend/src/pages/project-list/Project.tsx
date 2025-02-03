@@ -18,7 +18,7 @@ const Project: React.FC<Props> = ({ project }) => {
   async function fetchTasks() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/tasks/${project?.projects_id}`
+        `http://localhost:3001/tasks/${project?.project_id}`
       );
 
       setTasksLength(res.data.length);
@@ -30,7 +30,7 @@ const Project: React.FC<Props> = ({ project }) => {
   async function fetchUsers() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/users/${project?.projects_id}`
+        `http://localhost:3001/users/${project?.project_id}`
       );
       setMembersLength(res.data.length);
     } catch (e) {
@@ -39,7 +39,7 @@ const Project: React.FC<Props> = ({ project }) => {
   }
 
   return (
-    <div className="project-link" key={project.projects_id}>
+    <div className="project-link" key={project.project_id}>
       <div className="project-header">
         <img className="project-img" src={project.img} alt="" />
         {project.name}

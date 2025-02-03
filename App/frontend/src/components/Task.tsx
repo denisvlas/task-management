@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useDrag } from "react-dnd";
-import { Todo, TodoStatusType, User } from "../models";
+import { Todo, User } from "../models";
 import axios from "axios";
 import { updateTask } from "./Main";
 

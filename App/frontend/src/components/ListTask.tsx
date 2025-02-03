@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Todo, TodoStatusType, User } from "../models";
 import { Section } from "./Section";
-import { useDrop } from "react-dnd";
 
 interface Props {
   todo: Todo[];

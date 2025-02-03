@@ -8,7 +8,6 @@ interface props {
 }
 
 const Login: React.FC<props> = ({ projects }) => {
- 
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [warning, setWarning] = useState("");
@@ -26,13 +25,13 @@ const Login: React.FC<props> = ({ projects }) => {
       const response = await axios.post("http://localhost:3001/login", {
         username: username,
         password: password,
-        projectId: project?.projects_id,
+        projectId: project?.project_id,
       });
 
       if (response.data.length > 0) {
         try {
           const res = await axios.get(
-            `http://localhost:3001/get-user-id/${username}/${project?.projects_id}`
+            `http://localhost:3001/get-user-id/${username}/${project?.project_id}`
           );
           const id = res.data.userId;
           navigate(`/tasks/${projectName}/${username}/${id}`);

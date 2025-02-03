@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ProjectType, Todo, User } from "../models";
 import { UserList } from "./UserList";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { updateTask } from "./Main";
-
 
 interface PopUpProps {
   modal: null | Todo;

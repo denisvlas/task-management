@@ -13,11 +13,40 @@ const Register: React.FC<Props> = ({ projects }) => {
   const [warning, setWarning] = useState("");
   const navigate = useNavigate();
   const { projectName } = useParams();
+  const [project, setProject] = useState<ProjectType | undefined>();
 
-  const project = projects.find((p) => p.name === projectName);
+  useEffect(() => {
+    if (!projects || !projectName) {
+      console.log("No projects or projectName available");
+      return;
+    }
+
+    const currentProject = projects.find((p) => p.name === projectName);
+    console.log("Found project:", currentProject);
+    
+    if (!currentProject) {
+      setWarning("Project not found");
+      return;
+    }
+    
+    if (!currentProject.project_id) {
+      console.error("Project found but no ID:", currentProject);
+      setWarning("Invalid project configuration");
+      return;
+    }
+
+    setProject(currentProject);
+  }, [projects, projectName]);
 
   async function regUser(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
+    
+    if (!project || !project.project_id) {
+      console.error("Missing project or project ID:", project);
+      setWarning("Project configuration error");
+      return;
+    }
+
     if (username.length < 3) {
       setWarning("Username must be more than 3 characters");
       return;
@@ -28,26 +57,37 @@ const Register: React.FC<Props> = ({ projects }) => {
     }
 
     try {
+      console.log("Attempting registration with:", {
+        username: username.trim(),
+        projectId: project.project_id
+      });
+
       const response = await axios.post("http://localhost:3001/reg", {
-        username: username,
+        username: username.trim(),
         password: password,
-        projectId: project?.projects_id,
+        projectId: project.project_id
       });
 
       if (response.data.warning) {
         setWarning(response.data.warning);
         return;
       }
-      const res = await axios.get(
-        `http://localhost:3001/get-user-id/${username}/${project?.projects_id}`
-      );
-      const id = res.data.userId;
-      navigate(`/tasks/${projectName}/${username}/${id}`);
 
+      const res = await axios.get(
+        `http://localhost:3001/get-user-id/${username.trim()}/${project.project_id}`
+      );
+      
+      if (!res.data.userId) {
+        setWarning("Failed to get user ID");
+        return;
+      }
+
+      navigate(`/tasks/${projectName}/${username}/${res.data.userId}`);
       setPassword("");
       setUsername("");
     } catch (error) {
-      console.error(error);
+      console.error("Registration error:", error);
+      setWarning("Registration failed. Please try again.");
     }
   }
 

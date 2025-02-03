@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { ProjectType, Todo, User } from "../models";
 import { updateTask } from "./Main";
 
@@ -14,13 +12,11 @@ interface Props {
 }
 
 export const UserList: React.FC<Props> = ({
-  modal,
   todo,
   setTodo,
+  modal,
   setShowMembers,
-  project,
   users,
-  setUsers,
 }) => {
   function attachUser(id: number, userId: number) {
     const newTodo = todo.map((item) => {
@@ -57,7 +53,7 @@ export const UserList: React.FC<Props> = ({
           </p>
           {users.map((user) => {
             return (
-              user.role != "admin" && (
+              user.role !== "admin" && (
                 <p
                   onClick={() => attachUser(modal.id, user.id)}
                   key={user.id}

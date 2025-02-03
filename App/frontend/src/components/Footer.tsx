@@ -12,7 +12,7 @@ const Footer: React.FC<Props> = ({ todo, setTodo, project }) => {
   async function clear() {
     try {
       await axios.delete(
-        `http://localhost:3001/delete-all/${project?.projects_id}`
+        `http://localhost:3001/delete-all/${project?.project_id}`
       );
       setTodo([]);
       localStorage.setItem("tasks", JSON.stringify([]));
@@ -36,7 +36,6 @@ const Footer: React.FC<Props> = ({ todo, setTodo, project }) => {
     });
     setTodo(todos);
   }
-
 
   return (
     <div>

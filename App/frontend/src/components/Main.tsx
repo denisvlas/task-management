@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
-import { ProjectType, Todo, TodoStatusType, User } from "../models";
+import { ProjectType, Todo, User } from "../models";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -9,9 +9,6 @@ import Footer from "./Footer";
 import PopUp from "./PopUp";
 import { ProgressBar } from "./ProgressBar";
 import {
-  Navigate,
-  Route,
-  json,
   useNavigate,
   useParams,
 } from "react-router-dom";
@@ -26,18 +23,18 @@ function Main({ projects }: { projects: ProjectType[] }) {
 
   useEffect(() => {
     const p = projects.find((p) => p.name === projectName);
-    if (p != undefined) {
+    if (p !== undefined) {
       localStorage.setItem("project", JSON.stringify(p));
     }
     const storedProject = localStorage.getItem("project");
     if (storedProject) {
       setProject(JSON.parse(storedProject));
     }
-    if (project != undefined) {
+    if (project !== undefined) {
       fetchTasks();
       fetchUsers();
     }
-  }, [project?.projects_id]);
+  }, [project?.project_id]);
 
   const [users, setUsers] = useState<User[]>([]);
   const [userRole, setUserRole] = useState<string>("");
@@ -51,18 +48,19 @@ function Main({ projects }: { projects: ProjectType[] }) {
   async function fetchUsers() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/users/${project?.projects_id}`
+        `http://localhost:3001/users/${project?.project_id}`
       );
       setUsers(res.data);
+      console.log(res.data);
     } catch (e) {
       console.log(e);
     }
   }
   async function fetchTasks() {
     try {
-      if (project != undefined) {
+      if (project !== undefined) {
         const res = await axios.get(
-          `http://localhost:3001/tasks/${project?.projects_id}`
+          `http://localhost:3001/tasks/${project?.project_id}`
         );
 
         setTodo(res.data);

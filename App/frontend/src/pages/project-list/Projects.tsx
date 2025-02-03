@@ -22,7 +22,7 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
     });
     setProjects([
       ...projects,
-      { projects_id: projects.length + 1, name: name, img: url },
+      { project_id: projects.length + 1, name: name, img: url },
     ]);
     setName("");
     setUrl("");
