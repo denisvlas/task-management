@@ -1,0 +1,21 @@
+services:
+  hasura:
+    image: hasura/graphql-engine:v2.0.10
+    environment:
+      # Conectare la PostgreSQL-ul de pe mașina host
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:root@host.docker.internal:5432/task-management
+      HASURA_GRAPHQL_ADMIN_SECRET: admin
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      # Adaugă asta pentru a vedea erorile de conectare
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_LOG_LEVEL: "debug"
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      # Permite containerului să acceseze host-ul
+      - "host.docker.internal:host-gateway"
+    restart: always
+
+networks:
+  default:
+    driver: bridge
