@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cspell/dict-nb-no": "^2.0.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@types/node": "^16.18.41",
     "@types/react": "^18.2.20",
@@ -11,6 +12,7 @@
     "@urql/core": "^5.1.1",
     "axios": "^1.5.0",
     "bootstrap-icons": "^1.10.5",
+    "cspell": "^8.17.5",
     "gql.tada": "^1.8.10",
     "graphql": "^16.10.0",
     "mobx-state-tree": "^7.0.2",
@@ -32,8 +34,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+<<<<<<< HEAD
     "gentodo": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./src/tada/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" "
     
+=======
+    "gentodo": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./src/tada/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" && gql-tada generate output",
+    "gendirectory": "gql.tada generate schema 'https://web.dev.adopus.no/api/directory/v1/graphql' -o ./src/tada/schema/directory.graphql --header \"x-hasura-admin-secret: oUf822vk7z3oYPCpc\" && gql-tada generate output"
+>>>>>>> 7002d0f748f2f933209972c98acadbc36c04dd34
   },
   "eslintConfig": {
     "extends": [
@@ -54,13 +61,7 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.5",
-    "@graphql-codegen/typescript": "^4.1.5",
-    "@graphql-codegen/typescript-operations": "^4.5.1",
-    "@graphql-codegen/typescript-react-query": "^6.1.0",
-    "@graphql-codegen/typescript-urql": "^4.0.0",
     "eslint": "^8.57.1",
-    "get-graphql-schema": "^2.1.2",
     "gh-pages": "^6.0.0"
   }
 }
