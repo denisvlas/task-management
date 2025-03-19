@@ -1,33 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Project from "./Project";
 import "./project-list.css";
-import axios from "axios";
 import { ProjectType } from "../../models";
+import { addProject, getProjects } from "../../graphql/queries";
+import { useQuery, useMutation } from 'urql';
 
 interface Props {
   projects: ProjectType[];
   setProjects: React.Dispatch<React.SetStateAction<ProjectType[]>>;
 }
 
+
 export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
   const [showInput, setShowInput] = useState(false);
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  function addProject() {
-    setShowInput(false);
-    axios.post("http://localhost:3001/add-project", {
-      name: name,
-      url: url,
-    });
-    setProjects([
-      ...projects,
-      { project_id: projects.length + 1, name: name, img: url },
-    ]);
-    setName("");
-    setUrl("");
-  }
+  // const [result] = useQuery({
+  //   query: getProjects,
+  // });
+  // const { data, fetching, error } = result;
 
+  // useEffect(() => {
+  //   if (data?.projects) {
+  //     setProjects(data.projects);
+  //   }
+  //   console.log(projects);
+  // }, [data, projects]);
+
+  // const [addProjectResult, addProjectMutation] = useMutation(addProject);
+
+  // function AddProject() {
+  //   if (name && url) {
+  //     addProjectMutation({ name, img: url }).then((result) => {
+  //       console.log(result.data)
+        
+  //       if (result.data?.insert_projects_one) {
+  //         setProjects([...projects, result.data.insert_projects_one]);
+  //         setShowInput(false);
+  //         setName("");
+  //         setUrl("");
+  //       }
+  //     }).catch((e) => console.log(e));
+  //   }
+  // }
+
+  // if (fetching) return <p>Loading...</p>;
+  // if (error) return <p>Error: {error.message}</p>;
+function AddProject() {
+  
+}
   return (
     <div className="projects-page">
       <h1 className="title">PROJECTS</h1>
@@ -53,7 +75,7 @@ export const Projects: React.FC<Props> = ({ projects, setProjects }) => {
               placeholder="Add the link for image"
             />
           </form>
-          <button onClick={() => addProject()}>add</button>
+          <button onClick={AddProject}>add</button>
         </div>
       ) : (
         <></>

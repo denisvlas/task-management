@@ -6,33 +6,24 @@ import Register from "./pages/authentication/Register";
 import { Projects } from "./pages/project-list/Projects";
 import { ProjectType } from "./models";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import NotFound from "./pages/NotFound";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { useQuery } from "urql";
+import { getProjects } from "./graphql/queries";
+import Mobx from "./components/Mobx";
 
 function App() {
   const [projects, setProjects] = useState<ProjectType[]>([]);
 
-  useEffect( () => {
-    // axios
-    //   .get("http://localhost:3001/projects")
-    //   .then((res) => {
-    //     setProjects(res.data);
-    //   })
-    //   .catch((e) => console.log(e));
-   
-      async function getData(){
-        try {
-          const res = await axios.get("http://localhost:3001/projects");
-          setProjects(res.data);
-        } catch (e) {
-          console.log(e);
-        }
-      }
-      getData();
+  const [result] = useQuery({ query: getProjects });
+  const { data, fetching, error } = result;
 
-  }, []);
+  useEffect(() => {
+    if (data?.projects) {
+      setProjects(data.projects);
+    }
+  }, [data]);
 
   return (
     <BrowserRouter>
@@ -54,6 +45,10 @@ function App() {
           <Route
             path="/projects"
             element={<Projects projects={projects} setProjects={setProjects} />}
+          />
+          <Route
+            path="/mobx"
+            element={<Mobx />}
           />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Routes>

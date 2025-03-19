@@ -8,8 +8,12 @@
     "@types/node": "^16.18.41",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@urql/core": "^5.1.1",
     "axios": "^1.5.0",
     "bootstrap-icons": "^1.10.5",
+    "gql.tada": "^1.8.10",
+    "graphql": "^16.10.0",
+    "mobx-state-tree": "^7.0.2",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
@@ -17,15 +21,18 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "urql": "^4.2.2"
   },
   "scripts": {
+    "generate": "graphql-codegen",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gendirectory": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./src/tada/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" && gql-tada generate output"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +53,13 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/typescript": "^4.1.5",
+    "@graphql-codegen/typescript-operations": "^4.5.1",
+    "@graphql-codegen/typescript-react-query": "^6.1.0",
+    "@graphql-codegen/typescript-urql": "^4.0.0",
     "eslint": "^8.57.1",
+    "get-graphql-schema": "^2.1.2",
     "gh-pages": "^6.0.0"
   }
 }
