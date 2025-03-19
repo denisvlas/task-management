@@ -1,0 +1,27 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" },
+      {
+        "name": "gql.tada/ts-plugin",
+        "schemas": [
+          {
+            "name": "todogql",
+            "schema": "./generated/schema/todogql.graphql",
+            "tadaOutputLocation": "./generated/todogql-graphql-env.d.ts"
+          },
+          {
+            "name": "directory",
+            "schema": "./generated/schema/directory.graphql",
+            "tadaOutputLocation": "./generated/directory-graphql-env.d.ts"
+          }
+        ]
+      }
+    ]
+  }
+}

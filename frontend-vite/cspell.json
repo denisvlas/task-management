@@ -1,0 +1,21 @@
+{
+  "language": "en,nb",
+  "words": [],
+  "ignorePaths": [
+    "package-lock.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/objects",
+    ".vscode",
+    ".vscode-insiders",
+    "cspell.json",
+    "dist",
+    "yarn*",
+    "*norwegian_postal_codes*",
+    "target/npmlist.json",
+    "img",
+    "*.backup"
+  ],
+  "import": ["@cspell/dict-nb-no/cspell-ext.json"],
+  "ignoreRegExpList": ["enum.*"]
+}
