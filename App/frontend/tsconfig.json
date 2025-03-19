@@ -25,11 +25,7 @@
             "schema": "./src/tada/schema/todogql.graphql",
             "tadaOutputLocation": "./src/tada/todogql-graphql-env.d.ts"
           },
-          {
-            "name": "directory",
-            "schema": "./src/tada/schema/directory.graphql",
-            "tadaOutputLocation": "./src/tada/directory-graphql-env.d.ts"
-          }
+      
         ]
       }
     ]
