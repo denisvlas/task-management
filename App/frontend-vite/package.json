@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gentodo": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./generated/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" && gql-tada generate output",
-    "gendirectory": "gql.tada generate schema 'https://web.dev.adopus.no/api/directory/v1/graphql' -o ./generated/schema/directory.graphql --header \"x-hasura-admin-secret: oUf822vk7z3oYPCpc\" && gql-tada generate output"
+    "gentodo": "pnpm exec gql.tada generate schema http://localhost:8080/v1/graphql -o ./generated/schema/todogql.graphql --header 'x-hasura-admin-secret: admin' && gql-tada generate output"
   },
   "dependencies": {
     "gql.tada": "^1.8.10",

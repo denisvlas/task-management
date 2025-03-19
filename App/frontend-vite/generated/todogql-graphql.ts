@@ -1,5 +1,5 @@
 import { initGraphQLTada } from 'gql.tada'
-import type { introspection } from './todogql-graphql-env.d'
+import type {introspection} from './todogql-graphql-env.d'
 
 export const graphql = initGraphQLTada<{
     introspection: introspection
@@ -12,6 +12,9 @@ export const graphql = initGraphQLTada<{
         date: string
     }
 }>()
+
+const query=graphql(``)
+
 
 export type { FragmentOf, ResultOf, VariablesOf } from 'gql.tada'
 export { readFragment } from 'gql.tada'

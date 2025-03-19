@@ -9,7 +9,7 @@ function App() {
 
   const query=graphql(`
     query getProjects{
-      
+    
     }
     `)
 
