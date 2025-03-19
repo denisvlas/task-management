@@ -32,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gendirectory": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./src/tada/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" && gql-tada generate output"
+    "gentodo": "gql.tada generate schema 'http://localhost:8080/v1/graphql' -o ./src/tada/schema/todogql.graphql --header \"x-hasura-admin-secret: admin\" && gql-tada generate output",
+     "gendirectory": "gql.tada generate schema 'https://web.dev.adopus.no/api/directory/v1/graphql' -o ./generated/tada/schema/directory.graphql --header \"x-hasura-admin-secret: oUf822vk7z3oYPCpc\" && gql-tada generate output"
   },
   "eslintConfig": {
     "extends": [

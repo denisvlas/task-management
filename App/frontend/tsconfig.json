@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,23 +16,23 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "plugins": [
-            { "name": "typescript-plugin-css-modules" },
-            {
-                "name": "gql.tada/ts-plugin",
-                "schemas": [
-                    {
-                        "name": "todogql",
-                        "schema": "./src/tada/schema/todogql.graphql",
-                        "tadaOutputLocation": "./src/tada/todogql-graphql-env.d.ts"
-                    },
-                  
-                ]
-            }
+      { "name": "typescript-plugin-css-modules" },
+      {
+        "name": "gql.tada/ts-plugin",
+        "schemas": [
+          {
+            "name": "todogql",
+            "schema": "./src/tada/schema/todogql.graphql",
+            "tadaOutputLocation": "./src/tada/todogql-graphql-env.d.ts"
+          },
+          {
+            "name": "directory",
+            "schema": "./src/tada/schema/directory.graphql",
+            "tadaOutputLocation": "./src/tada/directory-graphql-env.d.ts"
+          }
         ]
-    
+      }
+    ]
   },
-  "include": [
-    "src"
-  ]
-  
+  "include": ["src"]
 }
